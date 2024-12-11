@@ -1,0 +1,23 @@
+/* hover:text-violet-500 transition-colors */
+
+.footer-links>h1{
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 12px;
+  color: white;
+  margin-bottom: 12px;
+}
+.footer-links>h1:hover{
+  color: #8b5cf6;
+  cursor: pointer;
+}
+.footer-links>p{
+  color: #a391c1;
+  font-size: 14.5px;
+}
+.footer-links>p:hover{
+  cursor: pointer;
+  color: #8b5cf6;
+  transition: all .2s ease-in-out;
+}

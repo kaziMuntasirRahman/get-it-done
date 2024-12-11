@@ -8,8 +8,6 @@ const Home = () => {
       this is layout
       banner/slider
       popular services
-      
-      <Footer />
     </div>
   );
 };

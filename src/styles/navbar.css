@@ -1,0 +1,21 @@
+.navlinks-center {
+  padding: 0 12px;
+  display: flex;
+}
+.navlinks-center > * {
+  padding: 10px 12px;
+}
+.navlinks-center > *:hover {
+  color: #7c3aed;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button {
+  font-size: 14px;
+  font-weight: 600;
+}
+button:first-child {
+  /* border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px; */
+}

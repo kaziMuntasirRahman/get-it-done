@@ -1,11 +1,17 @@
+import { HelmetProvider } from "react-helmet-async";
 import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const Root = () => {
   return (
-    <div>
-      this is root components
-      <Outlet />
-    </div>
+    <HelmetProvider>
+      <div>
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </div>
+    </HelmetProvider>
   );
 };
 
