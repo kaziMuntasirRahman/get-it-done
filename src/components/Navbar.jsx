@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import '../styles/navbar.css'
 
 const Navbar = () => {
@@ -45,8 +45,15 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end rounded-full bg-white 50 p-1 flex justify-between max-w-[180px]">
-          <button className='bg-[#fdf4f4] text-[#4c17a8] pr-2 pl-3 py-1 rounded-r-2xl rounded-l-full shadow-2xl border'>Sign In</button>
-          <button className='text-white bg-[#4c17a8] pr-3 pl-2 py-1  rounded-e-full rounded-s-lg drop-shadow-2xl'>Get Started</button>
+          <Link
+            to='/signin'
+            className='btn btn-sm bg-[#fdf4f4] text-[#4c17a8] pr-2 pl-3 py-1 rounded-r-2xl rounded-l-full shadow-2xl border'>Sign In</Link>
+          <Link
+            to='/signup'
+            className='btn btn-sm text-white bg-[#4c17a8] pr-3 pl-2 py-1  rounded-e-full rounded-s-lg drop-shadow-2xl'
+          >Get Started
+          </Link>
+
         </div>
       </nav>
     </div>

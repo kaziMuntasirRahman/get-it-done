@@ -1,7 +1,9 @@
 # GetItDone
 
 ## Description
-**GetItDone** is a simple and efficient service-sharing web application designed to connect users with various services. The platform allows users to post, update, and delete their services, interact with other users by asking questions, view detailed information about available services, and book services that meet their needs. Additionally, users can keep track of the status of their booked services and stay updated with real-time changes.
+***GetItDone** is a simple and efficient service-sharing web application designed to connect users with various services. The platform allows users to post, update, and delete their services, interact with other users by asking questions, view detailed information about available services, and book services that meet their needs. Additionally, users can keep track of the status of 
+their booked services and stay updated with real-time changes.
+
 
 ## Features
 - **Post Services**: Users can add their services for others to browse.

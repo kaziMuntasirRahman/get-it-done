@@ -15,6 +15,7 @@
 .footer-links>p{
   color: #a391c1;
   font-size: 14.5px;
+  margin-bottom: 3px;
 }
 .footer-links>p:hover{
   cursor: pointer;

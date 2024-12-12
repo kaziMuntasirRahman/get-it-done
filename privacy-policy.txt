@@ -1,0 +1,41 @@
+Privacy Policy
+1. Introduction
+GetItDone ("we," "us," or "our") respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our platform.
+
+2. Information We Collect
+We may collect the following types of information:
+
+Personal Information: Name, email address, phone number, and account details when you sign up or interact with the platform.
+Service Information: Details about services posted, comments, bookings, and transactions made on the platform.
+Usage Data: Information on how you interact with the platform, such as IP address, browser type, and operating system.
+3. How We Use Your Information
+We use your information to:
+
+Provide and maintain the platform.
+Process transactions and bookings.
+Communicate with you regarding your account or services.
+Improve and customize your user experience.
+Prevent fraud and ensure the security of the platform.
+4. Sharing Your Information
+We may share your information in the following cases:
+
+With service providers to facilitate transactions.
+If required by law or to protect our rights.
+With third-party vendors assisting in platform maintenance or operations.
+5. Data Security
+We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, disclosure, or misuse. However, no data transmission over the Internet can be guaranteed to be completely secure.
+
+6. Cookies
+We use cookies and similar tracking technologies to enhance your experience on our platform. You can modify your browser settings to decline cookies, though this may limit some functionalities.
+
+7. Your Rights
+You have the right to:
+
+Access, update, or delete your personal data.
+Withdraw your consent to data processing.
+Lodge a complaint with a data protection authority.
+8. Changes to This Policy
+We may update this Privacy Policy periodically. Any changes will be posted on this page, and you will be notified by email or via the platform.
+
+9. Contact Information
+If you have any questions about this Privacy Policy, please contact us at [support email].

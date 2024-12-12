@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="w-full bg-[#1E1438] pt-[80px] pb-8 text-white">
       <div className=" max-w-[1200px] mx-auto flex justify-between px-8 pb-[80px]">
-        <img src="images/logo.png" className="size-10 rounded-full mr-10 text-violet-500" />
+        <img src="images/logo.png" className="size-14 rounded-full mr-10 text-violet-500" />
         <div className="footer-links">
           <h1>Company</h1>
           <p>About</p>
