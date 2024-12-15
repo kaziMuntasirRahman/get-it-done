@@ -2,13 +2,29 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
 * {
   font-family: 'Bricolage Grotesque', sans-serif;
 }
+
 .bricolage-grotesque {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-style: normal;
 }
-.formTitle {
-  @apply text-2xl md:text-3xl mt-10 mb-8;
+
+.section-title {
+  @apply text-2xl md:text-3xl mt-6 mb-10;
+}
+
+.section-default {
+  @apply max-w-[1200px] mx-auto mt-8 mb-14;
+}
+
+::selection {
+  background-color: #5210ec;
+  color: white;
+  text-shadow: 2px 2px 2px gray;
+}
+.active{
+  color: blueviolet;
 }

@@ -5,3 +5,11 @@ Plumbing, electrical work, or handyman services.
 
 -------------------------------------------------------
 1. navbar
+1. footer
+3. login
+4. register
+5. Add service
+6. Manage Services
+7. Services To Do
+8. Checkout
+9. Error page

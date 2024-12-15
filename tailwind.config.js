@@ -6,7 +6,6 @@ export default {
   ],
   theme: {
     extend: {
-      formTitle: 'text-2xl md:text-3xl  mt-16 mb-8'
     },
   },
   plugins: [require("daisyui")],

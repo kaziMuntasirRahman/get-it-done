@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { AuthFooterLinks, Divider, FooterText, GitHubLoginButton, GoogleLoginButton, InputBox, LeftLogo, RightSide, SubmitButton } from "./AuthPageComponent";
+import { AuthFooterLinks, Divider, FooterText, GitHubLoginButton, GoogleLoginButton, InputBox, LeftLogo, RightSide, SubmitButton } from '../components/AuthPageComponent'
 
 
 const Registration = () => {
@@ -20,7 +20,7 @@ const Registration = () => {
       </Helmet>
       <LeftLogo />
       <form onSubmit={handleRegistration} className="w-[448px] mx-auto flex flex-col h-full">
-        <h1 className="formTitle">
+        <h1 className="section-title">
           Sign up for an Account</h1>
         {/* auth sign in  */}
         <section className="w-full flex gap-2">

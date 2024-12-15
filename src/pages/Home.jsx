@@ -1,13 +1,17 @@
-import Footer from "../components/Footer";
+import FirstRelevant from "../components/1stRelevent";
+import ThirdRelevant from "../components/3rdRelevant";
 import Header from "../components/Header";
+import PopularServices from "../components/PopularServices";
+import HowItWorks from "../components/HowItWorks";
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-[#F0FDFA]">
       <Header />
-      this is layout
-      banner/slider
-      popular services
+      <PopularServices />
+      <HowItWorks />
+      <FirstRelevant />
+      <ThirdRelevant />
     </div>
   );
 };
