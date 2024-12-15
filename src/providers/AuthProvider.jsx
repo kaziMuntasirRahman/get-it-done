@@ -1,4 +1,4 @@
-import { GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase";
 
@@ -26,6 +26,31 @@ const AuthProvider = ({ children }) => {
     };
   }, []);  // Empty dependency array ensures this runs once when component mounts
 
+  const createUser = async (name, email, password, imgURL) => {
+    setUserLoading(true);
+    try {
+      const credentials = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(auth.currentUser, { displayName: name, photoURL: imgURL })
+      return credentials.user;
+    } catch (err) {
+      console.log(err)
+      return err;
+    } finally {
+      setUserLoading(false);
+    }
+  }
+
+  const logIn = async (email, password) => {
+    setUserLoading(true);
+    try {
+      const credentials = await signInWithEmailAndPassword(auth, email, password);
+      return credentials.user;
+    } catch (err) {
+      console.log(err)
+    } finally {
+      setUserLoading(false);
+    }
+  }
 
   const googleSignIn = async () => {
     setUserLoading(true);
@@ -70,6 +95,8 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     userLoading,
+    createUser,
+    logIn,
     googleSignIn,
     gitHubSignIn,
     logOut

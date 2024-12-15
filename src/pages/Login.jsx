@@ -1,14 +1,38 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { AuthFooterLinks, Divider, GitHubLoginButton, GoogleLoginButton, InputBox, LeftLogo, RightSide, SubmitButton } from '../components/AuthPageComponent';
+import { AuthContext } from "../providers/AuthProvider";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { logIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    console.log(email, password);
+    // console.log(email, password);
+    const response = await logIn(email, password)
+    if (response.email) {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "You're successfully signed in to GetItDone!",
+        text: "Start browsing or offering services now.",
+        showConfirmButton: false,
+        timer: 2500
+      });
+      navigate('/');
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "We couldn't sign you in. Please try again.",
+        footer: '<a href="#">Need help signing in?</a>'
+      });
+    }
   }
 
   return (
