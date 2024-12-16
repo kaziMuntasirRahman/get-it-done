@@ -25,4 +25,4 @@ To run **GetItDone** locally, follow these steps:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/getitdone.git
+   git clone https://github.com/kaziMuntasirRahman/get-it-done
