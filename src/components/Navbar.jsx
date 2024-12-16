@@ -74,12 +74,13 @@ const Navbar = () => {
                 navLinks.map((navLink, index) =>
                   <NavLink
                     key={index}
+                    hidden={navLink.isPrivate && !user?.email}
                     className={({ isActive, isPending }) =>
                       isActive
                         ? "active"
                         : isPending
                           ? "pending"
-                          : ""
+                          : "inactive"
                     }
                     to={navLink.link}>{navLink.name}
                   </NavLink>)
@@ -89,22 +90,42 @@ const Navbar = () => {
         </div>
         <img src="/images/logo-removebg.png" className='size-14 mr-auto lg:mr-0' />
         <div className="navbar-center hidden lg:flex mx-auto drop-shadow-md">
-          <ul className=" navlinks-center bg-slate-50 rounded-full border border-slate-300 font-semibold">
+          <ul className="navlinks-center bg-slate-50 rounded-full border border-slate-300 font-semibold">
             {
               navLinks.map((navLink, index) =>
-                <NavLink
+                <div
                   key={index}
-                  className={({ isActive, isPending }) =>
-                    isActive
-                      ? "active"
-                      : isPending
-                        ? "pending"
-                        : ""
+                  hidden={navLink.isPrivate && !user?.email}
+                  className='flex items-center'
+                >
+                  <NavLink
+                    className={({ isActive, isPending }) =>
+                      isActive
+                        ? "active"
+                        : isPending
+                          ? "pending"
+                          : "inactive"
+                    }
+                    to={navLink.link}>
+                    <p>{navLink.name}</p>
+                  </NavLink>
+                  {
+                    navLink.children &&
+                    <div className="dropdown dropdown-end">
+                      <div tabIndex={0} role="button" className="text-lg ml-2 mt-1  transition-all duration-300"><IoIosArrowDown /></div>
+                      <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow">
+                        {
+                          navLink.children.map((children) =>
+                            // <NavLink className='px-3 py-2' key={children.name} to={`${navLink.link}${children.link}`}>{children.name}</NavLink>
+                            <li key={children.name}><a className='px-3 py-2' href={`${navLink.link}${children.link}`}>{children.name}</a></li>
+                            // <li key={children.name}><Link className='px-3 py-2 z-10 hover:bg-slate-400 cursor-pointer' to={`${navLink.link}${children.link}`}>{children.name}</Link></li>
+                          )
+                        }
+                      </ul>
+                    </div>
                   }
-                  to={navLink.link}>{navLink.name}
-                </NavLink>)
-            }
-
+                </div>
+              )}
           </ul>
         </div>
         <div className="navbar-end rounded-full bg-white 50 p-1 flex justify-between gap-1.5 max-w-[300px] w-fit ">
@@ -156,8 +177,8 @@ const Navbar = () => {
                 </>
           }
         </div>
-      </nav>
-    </div>
+      </nav >
+    </div >
   );
 };
 
