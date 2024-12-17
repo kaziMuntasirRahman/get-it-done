@@ -46,7 +46,7 @@ const PopularServices = () => {
                 <div className="flex-1 bg-gray-100 h-0.5 mx-2" />
                 <span className="hidden xs:block">8 min Read</span>
               </span>
-              <h1 className="font-heading text-[1.4rem] font-semibold text-navy-900 my-4">
+              <h1 className="font-heading text-[1.4rem] font-semibold text-[#1E3A8A] my-4">
                 Monitoring Fly Machine Resource Usage with Laravel Pulse
               </h1>
 

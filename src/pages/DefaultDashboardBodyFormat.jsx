@@ -1,26 +1,23 @@
-import { Helmet } from "react-helmet-async";
-import { Aside } from "../components/DashboardComponent";
+import { Aside } from "./DashBoardContainer";
 
-const ServicesToDo = () => {
+export const DefaultDashboardBodyFormat = () => {
   return (
     <>
       <div className="dashboard-main">
         <div className="dashboard-section">
           <Helmet>
-            <title>Services To Do • GetItDone</title>
+            <title>Profile • GetItDone</title>
           </Helmet>
           <h1 className="dashboard-title">
-            Services To Do
+            This is Profile
           </h1>
         </div>
       </div>
       <Aside
         topHead="Add section heading"
         topBody="Add section body"
-        // bottomArray={[{}, {}, {}, {}]}
+        bottomArray={[{}, {}, {}, {}]}
       />
     </>
   );
 };
-
-export default ServicesToDo;

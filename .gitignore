@@ -26,3 +26,5 @@ dist-ssr
 
 # files and folders that don't want to upload
 git_ignore
+required-data.txt
+
