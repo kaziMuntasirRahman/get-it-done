@@ -34,7 +34,7 @@ const ManageServices = () => {
           <tbody>
             {
               services.map((service, index) =>
-                <tr key={index} className="hover:bg-slate-200 transition-all duration-300">
+                <tr key={index} className="hover:bg-slate-100 transition-all duration-300">
                   <th>{index + 1}</th>
                   <td>
                     <div className="flex items-center gap-3">

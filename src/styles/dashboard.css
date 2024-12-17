@@ -13,5 +13,8 @@
   @apply max-w-[720px] mx-auto mt-8 mb-10;
 }
 .dashboard-title {
-  @apply text-lg md:text-xl font-normal text-violet-950 text-left mb-6;
+  @apply text-lg md:text-2xl font-normal text-violet-950 text-left mb-6 text-shadow;
+}
+.text-shadow {
+  text-shadow: 0px 0px 5px rgba(137,43,226,0.3);
 }

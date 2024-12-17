@@ -17,7 +17,7 @@ const DashBoardContainer = () => {
       <TopBar />
       <div className="h-full md:px-[40px] lg:px-[80px] xl:px-[200px] px-5 py-8 flex items-start gap-6">
         <Navbar />
-        <div className="w-[720px] bg-white rounded-xl shadow-xl border border-violet-700/20 pb-12 xl:px-16 lg:px-8 px-4">
+        <div className="w-[720px] bg-white rounded-xl shadow-xl border border-violet-700/20 pb-12 px-4">
           <Outlet />
         </div>
         <Aside />
