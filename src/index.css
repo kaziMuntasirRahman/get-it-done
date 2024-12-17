@@ -12,12 +12,12 @@
   font-style: normal;
 }
 
-.section-title {
-  @apply text-2xl md:text-3xl mt-6 mb-10;
-}
-
 .section-default {
   @apply max-w-[1200px] mx-auto mt-8 mb-14;
+}
+
+.section-title {
+  @apply text-2xl md:text-3xl mt-6 mb-10;
 }
 
 ::selection {

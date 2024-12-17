@@ -1,26 +1,24 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { Helmet } from "react-helmet-async";
 import { MdDelete } from "react-icons/md";
-import { AuthContext } from '../providers/AuthProvider';
 
 
 const ManageServices = () => {
   const [services, setServices] = useState([]);
-  const {  } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch('data/services.json')
+    fetch('/data/services.json')
       .then(res => res.json())
       .then(data => setServices(data))
   }, [])
 
 
   return (
-    <div className="section-default w-full">
+    <div className="dashboard-section w-full">
       <Helmet>
         <title>Manage Services • GetItDone</title>
       </Helmet>
-      <h1 className="section-title text-center">Manage Your Services</h1>
+      <h1 className="dashboard-title text-center">Manage Your Services</h1>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}

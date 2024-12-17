@@ -1,16 +1,23 @@
 import { createBrowserRouter } from "react-router-dom";
+import PrivateRoute from "../PrivateRoute";
 import Root from "../Root";
-import Home from "../pages/Home";
-import ErrorPage from "../pages/ErrorPage";
-import AllServices from "../pages/AllServices";
-import Registration from "../pages/Registration";
-import Login from "../pages/Login";
-import AddService from "../pages/AddService";
-import ManageServices from "../pages/ManageServices";
-import ServicesToDo from "../pages/ServicesToDo";
-import BookedService from "../pages/BookedService";
 import About from "../pages/About";
+import AddService from "../pages/AddService";
+import AllServices from "../pages/AllServices";
+import BookedService from "../pages/BookedService";
+import ChangePassword from "../pages/ChangePassword";
 import Contact from "../pages/Contact";
+import ErrorPage from "../pages/ErrorPage";
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import ManageServices from "../pages/ManageServices";
+import Notifications from "../pages/Notifications";
+import Registration from "../pages/Registration";
+import ServicesToDo from "../pages/ServicesToDo";
+import UpdateProfile from "../pages/UpdateProfile";
+import UserSettings from "../pages/UserSettings";
+import ViewProfile from "../pages/ViewProfile";
+import DashBoardContainer from "../pages/DashBoardContainer";
 import DashBoard from "../pages/DashBoard";
 
 const router = createBrowserRouter([
@@ -19,19 +26,32 @@ const router = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { path: '/', element: <Home /> },
+      // { path: '/', element: <Home /> },
+      { index: true, element: <Home /> },
       { path: '/services', element: <AllServices /> },
-      { path: '/add-service', element: <AddService /> },
-      { path: '/manage-services', element: <ManageServices /> },
-      { path: '/services-to-do', element: <ServicesToDo /> },
-      { path: '/booked-services', element: <BookedService /> },
       { path: '/about', element: <About /> },
       { path: '/contact', element: <Contact /> },
     ]
   },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute><DashBoardContainer /></PrivateRoute>,
+    children: [
+      // { path: '', element: <DashBoard /> },
+      { index: true, element: <DashBoard /> },
+      { path: 'add-service', element: <AddService /> },
+      { path: 'manage-services', element: <ManageServices /> },
+      { path: 'services-to-do', element: <ServicesToDo /> },
+      { path: 'booked-services', element: <BookedService /> },
+      { path: 'view-profile', element: <ViewProfile /> },
+      { path: 'update-profile', element: <UpdateProfile /> },
+      { path: 'change-password', element: <ChangePassword /> },
+      { path: 'notifications', element: <Notifications /> },
+      { path: 'user-settings', element: <UserSettings /> },
+    ]
+  },
   { path: 'signup', element: <Registration /> },
   { path: 'signin', element: <Login /> },
-  { path: 'dashboard', element: <DashBoard /> }
 ]);
 
 export default router;

@@ -2,7 +2,7 @@ import Banner from "./Banner";
 
 const Header = () => {
   return (
-    <div>
+    <div className="-z-10">
       <Banner />
     </div>
   );

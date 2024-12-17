@@ -49,7 +49,7 @@ const Navbar = () => {
 
 
   return (
-    <div className='w-full bg-slate-200'>
+    <div className='w-full bg-slate-200 z-50'>
       <nav className='max-w-[1200px] mx-auto h-24 px-8 flex justify-between items-center'>
         <div className="navbar-start lg:hidden max-w-fit">
           <div className="dropdown">
@@ -93,38 +93,39 @@ const Navbar = () => {
           <ul className="navlinks-center bg-slate-50 rounded-full border border-slate-300 font-semibold">
             {
               navLinks.map((navLink, index) =>
-                <div
-                  key={index}
-                  hidden={navLink.isPrivate && !user?.email}
-                  className='flex items-center'
-                >
-                  <NavLink
-                    className={({ isActive, isPending }) =>
-                      isActive
-                        ? "active"
-                        : isPending
-                          ? "pending"
-                          : "inactive"
+                navLink.isPrivate && !user?.email ?
+                  null :
+                  <div
+                    key={index}
+                    className='flex items-center'
+                  >
+                    <NavLink
+                      className={({ isActive, isPending }) =>
+                        isActive
+                          ? "active"
+                          : isPending
+                            ? "pending"
+                            : "inactive"
+                      }
+                      to={navLink.link}>
+                      <p>{navLink.name}</p>
+                    </NavLink>
+                    {
+                      navLink.children &&
+                      <div className="dropdown dropdown-end z-50">
+                        <div tabIndex={0} role="button" className="text-lg ml-2 mt-1  transition-all duration-300 z-10"><IoIosArrowDown /></div>
+                        <ul tabIndex={0} className="dropdown-content menu rounded-box p-2 bg-slate-200 z-[1] max-w-60 w-52 min-w-36 mt-3 shadow-xl border border-violet-300 text-black font-normal absolute">
+                          {
+                            navLink.children.map((children) =>
+                              // <NavLink className='px-3 py-2' key={children.name} to={`${navLink.link}${children.link}`}>{children.name}</NavLink>
+                              // <li key={children.name}><a className='px-3 py-2' href={`${navLink.link}${children.link}`}>{children.name}</a></li>
+                              <li key={children.name}><Link className='px-3 py-2 hover:bg-slate-300 cursor-pointer shadow-sm' to={`${navLink.link}${children.link}`}>{children.name}</Link></li>
+                            )
+                          }
+                        </ul>
+                      </div>
                     }
-                    to={navLink.link}>
-                    <p>{navLink.name}</p>
-                  </NavLink>
-                  {
-                    navLink.children &&
-                    <div className="dropdown dropdown-end">
-                      <div tabIndex={0} role="button" className="text-lg ml-2 mt-1  transition-all duration-300"><IoIosArrowDown /></div>
-                      <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow">
-                        {
-                          navLink.children.map((children) =>
-                            // <NavLink className='px-3 py-2' key={children.name} to={`${navLink.link}${children.link}`}>{children.name}</NavLink>
-                            <li key={children.name}><a className='px-3 py-2' href={`${navLink.link}${children.link}`}>{children.name}</a></li>
-                            // <li key={children.name}><Link className='px-3 py-2 z-10 hover:bg-slate-400 cursor-pointer' to={`${navLink.link}${children.link}`}>{children.name}</Link></li>
-                          )
-                        }
-                      </ul>
-                    </div>
-                  }
-                </div>
+                  </div>
               )}
           </ul>
         </div>
@@ -157,9 +158,9 @@ const Navbar = () => {
                     <div className="m-1 inline-flex">{user.displayName}</div>
                     <IoIosArrowDown tabIndex={0} role="button" className='inline ml-1 text-black hover:translate-y-1 transition-all duration-200' />
                     <ul tabIndex={0} className="dropdown-content menu bg-slate-200 rounded-box z-[1] max-w-60 w-fit min-w-36 p-2 mt-2 shadow-xl border border-violet-300 text-black">
-                      <li><a>Update Profile</a></li>
-                      <li><a>View Profile</a></li>
-                      <li><a className='font-bold'>{user?.email && user.email.length > 20 ? user.email.slice(0, 16) + "..." : user.email}</a></li>
+                      <li><a href="dashboard/view-profile">View Profile</a></li>
+                      <li><a href="dashboard/update-profile">Update Profile</a></li>
+                      <li><a className='font-bold '>{user?.email && user.email.length > 20 ? user.email.slice(0, 16) + "..." : user.email}</a></li>
                       <li><a onClick={handleLogOut} className='bg-red-700 text-white'>Logout</a></li>
                     </ul>
                   </div>

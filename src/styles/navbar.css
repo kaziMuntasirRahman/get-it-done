@@ -31,3 +31,16 @@ button:first-child {
 .menu-horizontal>li{
   padding: 0 0;
 }
+/* In your navbar.css file */
+.dropdown-content {
+  position: absolute; /* Make sure it's positioned absolutely */
+  z-index: 9999;      /* Ensure a high z-index so it stays on top */
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Optional styling */
+}
+/* Add or modify this in your Banner CSS */
+.banner {
+  position: relative;
+  z-index: 1; /* Set this lower than the dropdown */
+}

@@ -2,10 +2,10 @@ import Button from "./Button";
 
 const Banner = () => {
   return (
-    <div className="relative min-h-[800px] flex justify-center mb-14">
+    <div className="banner relative min-h-[800px] flex justify-center mb-14 z-0">
       {/* <div className="skeleton h-96 w-full"></div> */}
       <img src="/images/banner-cloud-city.png" className="w-screen h-auto absolute left-0 bottom-0" />
-      <div className="relative flex flex-col items-start sm:items-center sm:text-center">
+      <div className="relative flex flex-col items-start sm:items-center sm:text-center z-10">
         <h1 className="font-heading text-3.5xl xs:text-4.5xl sm:text-5xl md:text-5.5xl lg:text-6xl xl:text-6.5xl !tracking-[-.045em] relative text-navy mb-4 mt-24">
           A Platform for Reliable Home &nbsp;
           <em className="relative inline-block z-0">
@@ -27,7 +27,7 @@ const Banner = () => {
           <strong className="text-navy">Over 3 million services&nbsp;</strong>
           completed on GetItDone, connecting homeowners with trusted professionals for plumbing, electrical work, and handyman services. GetItDone makes booking easy, with seamless communication, instant updates, and reliable service for every job.
         </p>
-        <Button text="Dashboard" address="/" />
+        <Button text="Dashboard" address="/dashboard" />
       </div>
     </div>
   );

@@ -1,16 +1,16 @@
 import { Helmet } from "react-helmet-async";
 
-const ServicesToDo = () => {
+const UserSettings = () => {
   return (
     <div className="dashboard-section">
       <Helmet>
-        <title>Services To Do • GetItDone</title>
+        <title>Profile Settings • GetItDone</title>
       </Helmet>
       <h1 className="dashboard-title">
-        Services To Do
+        Profile Settings
       </h1>
     </div>
   );
 };
 
-export default ServicesToDo;
+export default UserSettings;
