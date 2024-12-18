@@ -8,8 +8,8 @@ import { Aside } from "../components/DashboardComponent"
 const ViewProfile = () => {
   const { user } = useContext(AuthContext);
   const { displayName, email, photoURL } = user;
-  const [isVerified, setIsVerified] = useState(true);
-  const [isAvailable, setIsAvailable] = useState(true)
+  const [isVerified, setIsVerified] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(false)
   return (
     <>
       <div className="dashboard-main">
@@ -25,12 +25,12 @@ const ViewProfile = () => {
             <div className="absolute left-1/2 -translate-x-1/2 border-4 border-violet-600 rounded-full size-60 -translate-y-1/2 max-w-[250px]">
               <img
                 src={photoURL}
-                className="size-full rounded-full border-4 border-white"
+                className="size-full rounded-full border-4 border-white object-cover"
               />
-                <div
-                  className={`size-10 rounded-full absolute bottom-0 right-5 cursor-pointer border-2 border-white ${isAvailable ? 'bg-[#44b700]' : 'bg-[#cccccc]'} tooltip`} data-tip="Ready to Get Hired "
-                />
-                <span></span>
+              <div
+                className={`size-10 rounded-full absolute bottom-0 right-5 cursor-pointer border-2 border-white ${isAvailable ? 'bg-[#44b700]' : 'bg-[#cccccc]'} tooltip`} data-tip={isAvailable ? "Ready to Get Hired" : "Currently Not Available"}
+              />
+              <span></span>
             </div>
 
             <div className="mt-36 mb-2 flex justify-center items-center gap-2">
