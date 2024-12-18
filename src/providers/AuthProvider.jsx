@@ -1,11 +1,14 @@
 import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase";
+import axios from "axios";
 
 export const AuthContext = createContext(null)
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [userDataLoading, setUserDataLoading] = useState(true);
   const [userLoading, setUserLoading] = useState(true);
 
   useEffect(() => {
@@ -14,8 +17,22 @@ const AuthProvider = ({ children }) => {
       if (currentUser) {
         setUser(currentUser);  // Set user if logged in
         console.log(currentUser);
+        const getUserData = async () => {
+          setUserDataLoading(true)
+          try {
+            const response = await axios.get(`http://localhost:5000/users/${currentUser?.email}`)
+            console.log(response.data);
+            setUserData(response.data);
+            setUserDataLoading(false);
+          } catch (err) {
+            console.log(err.message);
+            setUserDataLoading(false);
+          }
+        }
+        getUserData();
       } else {
         setUser(null);  // Set user to null if logged out
+        setUserData(null);
         console.log('User is absent.');
       }
       setUserLoading(false);
@@ -79,6 +96,20 @@ const AuthProvider = ({ children }) => {
     }
   }
 
+  const updateUser = async (name, imgURL) => {
+    setUserLoading(true)
+    try {
+      await updateProfile(auth.currentUser, { displayName: name, photoURL: imgURL })
+      console.log("Firebase profile updated...")
+      return true;
+    } catch (err) {
+      console.log(err)
+      return false;
+    } finally {
+      setUserLoading(false)
+    }
+  }
+
   const logOut = async () => {
     setUserLoading(true)
     try {
@@ -95,10 +126,13 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     userLoading,
+    userData,
+    userLoading,
     createUser,
     logIn,
     googleSignIn,
     gitHubSignIn,
+    updateUser,
     logOut
   }
 

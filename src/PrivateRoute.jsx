@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
   // console.log(location);
 
   if (userLoading) {
-    return <div className="loading-spinner size-16"></div>
+    return <div className="loading-spinner size-16" />
   }
 
   if (user?.email) {

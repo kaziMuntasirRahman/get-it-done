@@ -128,7 +128,7 @@ export const Divider = () => {
 };
 
 // ----------------------------------------
-export const InputBox = ({ label, type, autoFocus = false, setInputValue, min, max, placeholder, defaultValue }) => {
+export const InputBox = ({ label, type, autoFocus = false, setInputValue, min, max, placeholder, defaultValue, required = false }) => {
   return (
     <label className="block text-sm font-medium mb-6">
       {label}
@@ -141,9 +141,25 @@ export const InputBox = ({ label, type, autoFocus = false, setInputValue, min, m
         defaultValue={defaultValue}
         // min={new Date().toISOString().split("T")[0]} // restrict to today's date and future dates
         className="mt-1.5 transition appearance-none block w-full p-3 rounded-xl shadow-sm border border-[#D7DFE9] hover:border-violet-200 focus:border-violet-300 bg-violet-50 bg-opacity-0 hover:bg-opacity-50 focus:bg-opacity-50 ring-violet-200 focus:ring-violet-200 focus:ring-[3px] focus:outline-none"
-        required
+        required={required}
         onChange={e => setInputValue(e.target.value)}
       />
+    </label>
+  )
+}
+
+// large text submit box-------------------------
+export const TextArea = ({ label, setInputValue, rows = 2, defaultValue, customClass }) => {
+  return (
+    <label className={`" col-span-2 block text-sm font-medium mb-6 ${customClass}`}>
+      {label}
+      <textarea
+        placeholder="Maximum 200 words."
+        rows={rows}
+        defaultValue={defaultValue}
+        className="textarea textarea-bordered w-full mt-1.5 transition appearance-none block p-3 rounded-xl shadow-sm border border-[#D7DFE9] hover:border-violet-200 focus:border-violet-300 bg-violet-50 bg-opacity-0 hover:bg-opacity-50 focus:bg-opacity-50 ring-violet-200 focus:ring-violet-200 focus:ring-[3px] focus:outline-none"
+        onChange={e => setInputValue(e.target.value)}
+      >{defaultValue}</textarea>
     </label>
   )
 }

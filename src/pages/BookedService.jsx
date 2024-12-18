@@ -14,11 +14,11 @@ const BookedService = () => {
           </h1>
         </div>
       </div >
-      <Aside
+      {/* <Aside
         topHead="Add section heading"
         topBody="Add section body"
-      // bottomArray={[{}, {}, {}, {}]}
-      />
+      bottomArray={[{}, {}, {}, {}]}
+      /> */}
     </div>
   );
 };
