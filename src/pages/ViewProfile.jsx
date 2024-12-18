@@ -22,15 +22,22 @@ const ViewProfile = () => {
             <img src="/images/demo-img/Editing_And_Deleting_-thumb.jpeg"
               className="h-60 w-full object-cover object-center" />
 
-            <div className="absolute left-1/2 -translate-x-1/2 border-4 border-violet-600 rounded-full size-60 -translate-y-1/2 max-w-[250px]">
+            <div className="absolute left-1/2 -translate-x-1/2 border-4 border-violet-600 bg-violet-800 rounded-full size-60 -translate-y-1/2 max-w-[250px]">
               <img
                 src={photoURL}
-                className="size-full rounded-full border-4 border-white object-cover"
+                className="size-full rounded-full border-4 border-white object-cover z-20 absolute"
               />
               <div
-                className={`size-10 rounded-full absolute bottom-0 right-5 cursor-pointer border-2 border-white ${isAvailable ? 'bg-[#44b700]' : 'bg-[#cccccc]'} tooltip`} data-tip={isAvailable ? "Ready to Get Hired" : "Currently Not Available"}
+                className={`size-10 rounded-full absolute bottom-0 right-5 z-30 cursor-pointer border-2 border-white ${isAvailable ? 'bg-[#44b700]' : 'bg-[#cccccc]'} tooltip`} data-tip={isAvailable ? "Ready to Get Hired" : "Currently Not Available"}
               />
               <span></span>
+              <div
+                className="size-full rounded-full absolute bottom-0 left-0 top-0 cursor-pointer flex  items-center z-0"
+              >
+                <span className="text-white text-[200px] w-full text-center mb-6 z-0">
+                  {displayName.slice(0, 1)}
+                </span>
+              </div>
             </div>
 
             <div className="mt-36 mb-2 flex justify-center items-center gap-2">
@@ -61,7 +68,7 @@ const ViewProfile = () => {
           { title: "Id", value: 1 },
           { title: "Income", value: 1416 },
           { title: "Mobile", value: '+88 01705-358025' },
-          { title: "Email", value: user.email },
+          { title: "Email", value: email },
         ]}
       />
     </>

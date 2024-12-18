@@ -160,7 +160,7 @@ const Navbar = () => {
                     <ul tabIndex={0} className="dropdown-content menu bg-slate-200 rounded-box z-[1] max-w-60 w-fit min-w-36 p-2 mt-2 shadow-xl border border-violet-300 text-black">
                       <li><a href="dashboard/view-profile">View Profile</a></li>
                       <li><a href="dashboard/update-profile">Update Profile</a></li>
-                      <li><a className='font-bold '>{user?.email && user.email.length > 20 ? user.email.slice(0, 16) + "..." : user.email}</a></li>
+                      <li className='tooltip tooltip-top' data-tip={user?.email}><a className='font-bold '>{user?.email && user.email.length > 20 ? user.email.slice(0, 16) + "..." : user.email}</a></li>
                       <li><a onClick={handleLogOut} className='bg-red-700 text-white'>Logout</a></li>
                     </ul>
                   </div>

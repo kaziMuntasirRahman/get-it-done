@@ -6,7 +6,7 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import { Link } from "react-router-dom";
 const AllServices = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(10);
+  const [totalPage, setTotalPage] = useState(1);
   const [limit, setLimit] = useState(6)
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true)

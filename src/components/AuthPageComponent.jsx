@@ -71,6 +71,8 @@ export const GoogleLoginButton = () => {
         timer: 2500
       });
       navigate('/');
+      const { displayName, email, photoURL, phoneNumber, metadata, password } = response;
+      console.log(displayName, email, photoURL, phoneNumber, metadata, password);
     } else {
       Swal.fire({
         icon: "error",
