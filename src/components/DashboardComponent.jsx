@@ -14,7 +14,7 @@ import '../styles/dashboard.css';
 export const TopBar = () => {
   return (
     <div>
-      <div className="h-[64px]  w-full flex justify-between items-center px-[232px] bg-violet-950 fixed top-0 z-20" >
+      <div className="h-[64px]  w-full flex justify-between items-center px-10 lg:px-28 xl:px-[232px] bg-violet-950 fixed top-0 z-20" >
         <Link to="/">
           <img src="/images/logo.png" className="rounded-full size-12" />
         </Link>
@@ -68,6 +68,7 @@ export const TopBar = () => {
     </div>
   )
 }
+
 export const Navbar = () => {
   const navLinks = [
     {
@@ -145,7 +146,7 @@ export const Navbar = () => {
         showConfirmButton: false,
         timer: 2500
       });
-      navigate('/')
+      setTimeout(()=>navigate('/'), 1)
     } else {
       Swal.fire({
         icon: "error",
@@ -157,8 +158,11 @@ export const Navbar = () => {
   }
 
   return (
-    <nav className="flex flex-col space-y-4 lg:w-72 sticky top-20">
-      <button className="btn btn-sm bg-[#7C3AED] text-white w-full !h-[38px]">Launch an App</button>
+    <nav className='dashboard-navbar'>
+      <button className="btn btn-sm bg-[#7C3AED] text-white w-full !h-[38px]">
+        <p className="nav-text">{user?.displayName.toUpperCase()}</p>
+        <p className="block lg:hidden">{user?.displayName.toUpperCase().slice(0,1)}</p>
+        </button>
       <NavLink
         className={({ isActive, isPending }) =>
           isActive
@@ -169,7 +173,7 @@ export const Navbar = () => {
         }
         to='/dashboard'>
         <div className="flex items-center justify-center size-6 lg:bg-gradient-to-b from-white/75 to-violet-100/75 lg:rounded-md lg:shadow-sm shadow-violet-800/10 lg:ring-1 ring-violet-800/10"><RiDashboardLine /></div>
-        <p>Dashboard</p>
+        <p className="nav-text">Dashboard</p>
       </NavLink>
 
       <hr className="my-3 w-full h-px border-0 bg-gradient-to-r from-violet-800/5 via-violet-800/20 to-violet-800/5" />
@@ -187,7 +191,7 @@ export const Navbar = () => {
             }
             to={navLink.address}>
             <div className="flex items-center justify-center size-6 lg:bg-gradient-to-b from-white/75 to-violet-100/75 lg:rounded-md lg:shadow-sm shadow-violet-800/10 lg:ring-1 ring-violet-800/10">{navLink.icon}</div>
-            <p>{navLink.name}</p>
+            <p className="nav-text">{navLink.name}</p>
           </NavLink>
         )}
       <hr className="my-3 w-full h-px border-0 bg-gradient-to-r from-violet-800/5 via-violet-800/20 to-violet-800/5" />
@@ -204,15 +208,15 @@ export const Navbar = () => {
             }
             to={navLink.address}>
             <div className="flex items-center justify-center size-6 lg:bg-gradient-to-b from-white/75 to-violet-100/75 lg:rounded-md lg:shadow-sm shadow-violet-800/10 lg:ring-1 ring-violet-800/10">{navLink.icon}</div>
-            <p>{navLink.name}</p>
+            <p className="nav-text">{navLink.name}</p>
           </NavLink>
         )}
       <hr className="my-3 w-full h-px border-0 bg-gradient-to-r from-violet-800/5 via-violet-800/20 to-violet-800/5" />
       <button
         onClick={handleLogOut}
-        className="flex gap-1.5 lg:gap-2.5 font-bold items-center justify-items-center lg:justify-items-start px-2.5 py-2 rounded-lg transition-colors bg-red-600 text-white">
+        className="flex gap-1.5 lg:gap-2.5 font-bold items-center justify-items-center lg:justify-items-start px-2.5 py-2 rounded-lg transition-colors bg-red-600 text-white tooltip ">
         <div className="flex items-center justify-center size-6 lg:bg-gradient-to-b from-white/10 to-violet-100/15 lg:rounded-md lg:shadow-sm shadow-violet-800/10 lg:ring-1 ring-violet-800/10"><MdLogout /></div>
-        <p>LogOut</p>
+        <p className="nav-text">LogOut</p>
       </button>
 
     </nav >
@@ -227,7 +231,7 @@ const defaultArray = [
 export const Aside = ({ topHead = "Default Header", topBody = "Default body content", bottomArray = defaultArray }) => {
 
   return (
-    <aside className="space-y-6 w-96 sticky top-20">
+    <aside className='dashboard-aside'>
       <div className="w-full p-5 bg-white rounded-xl shadow-xl border border-violet-700/20 pb-4 flex flex-col gap-3 font-light">
         <header className="max-w-fit flex items-center gap-2 text-black/80">
           <h3 className="font-medium">{topHead}</h3>

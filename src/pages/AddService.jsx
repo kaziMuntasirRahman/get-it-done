@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { InputBox, SubmitButton } from "../components/AuthPageComponent";
 import { Helmet } from "react-helmet-async";
+import { InputBox, SubmitButton } from "../components/AuthPageComponent";
 import { Aside } from "../components/DashboardComponent";
 
 const AddService = () => {
@@ -18,12 +18,12 @@ const AddService = () => {
 
 
   return (
-    <>
+    <div div className="dashboard-body">
+      <Helmet>
+        <title>Add Service • GetItDone</title>
+      </Helmet>
       <div className="dashboard-main">
         <div className="dashboard-section w-full">
-          <Helmet>
-            <title>Add Service • GetItDone</title>
-          </Helmet>
           <h1 className="dashboard-title">Add Your Service</h1>
           {/* form section */}
           <form onSubmit={handleAddService} className="flex flex-col md:grid md:grid-cols-2 gap-x-10">
@@ -51,9 +51,9 @@ const AddService = () => {
       <Aside
         topHead="Add section heading"
         topBody="Add section body"
-        // bottomArray={[{}, {}, {}, {}]}
+      // bottomArray={[{}, {}, {}, {}]}
       />
-    </>
+    </div>
   );
 };
 

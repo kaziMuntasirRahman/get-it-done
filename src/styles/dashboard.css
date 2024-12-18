@@ -3,21 +3,43 @@
 .dash-inactive {
   @apply flex gap-1.5 lg:gap-2.5 font-bold items-center justify-items-center lg:justify-items-start px-2.5 py-2 rounded-lg transition-colors lg:text-violet-700;
 }
+
 .dash-active {
   @apply bg-violet-500/30;
 }
+
 .dash-inactive {
   @apply hover:bg-violet-500/15;
 }
-.dashboard-section {
-  @apply max-w-[720px] min-h-[600px] mx-auto my-4;
-}
+
 .dashboard-title {
   @apply text-lg md:text-2xl font-normal text-violet-950 text-left mb-6 text-shadow;
 }
-.dashboard-main{
-  @apply w-[720px] bg-white rounded-xl shadow-xl border border-violet-700/20 pb-12 px-4;
+
+.dashboard-navbar {
+  @apply flex flex-col space-y-4 w-auto lg:min-w-64 sticky top-20;
 }
+
+.nav-text {
+  @apply hidden lg:block;
+}
+
+.dashboard-body {
+  @apply flex flex-col justify-stretch items-stretch md:flex-row md:items-start gap-6 flex-grow;
+}
+
+.dashboard-main {
+  @apply flex-1 min-h-[700px] bg-white rounded-xl shadow-xl border border-violet-700/20 pb-12 px-4;
+}
+
+.dashboard-section {
+  @apply flex-1 mx-auto my-4;
+}
+
+.dashboard-aside {
+  @apply flex-initial space-y-6 xl:min-w-96 max-w-min sticky top-20 ;
+}
+
 .text-shadow {
-  text-shadow: 0px 0px 5px rgba(137,43,226,0.3);
+  text-shadow: 0px 0px 5px rgba(137, 43, 226, 0.3);
 }

@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import '../styles/navbar.css';
 import { useContext } from 'react';
 import { AuthContext } from '../providers/AuthProvider';
@@ -25,6 +25,7 @@ const navLinks = [
 
 const Navbar = () => {
   const { user, userLoading, logOut } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const handleLogOut = async () => {
     const res = await logOut();
@@ -37,6 +38,7 @@ const Navbar = () => {
         showConfirmButton: false,
         timer: 2500
       });
+      setTimeout(()=>navigate('/'), 1)
     } else {
       Swal.fire({
         icon: "error",

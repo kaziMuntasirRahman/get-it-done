@@ -15,12 +15,12 @@ const ManageServices = () => {
 
 
   return (
-    <>
+    <div div className="dashboard-body">
+      <Helmet>
+        <title>Manage Services • GetItDone</title>
+      </Helmet>
       <div className="dashboard-main">
         <div className="dashboard-section w-full">
-          <Helmet>
-            <title>Manage Services • GetItDone</title>
-          </Helmet>
           <h1 className="dashboard-title text-center">Manage Your Services</h1>
           <div className="overflow-x-auto">
             <table className="table">
@@ -81,12 +81,12 @@ const ManageServices = () => {
           </div>
         </div>
       </div>
-      <Aside
+      {/* <Aside
         topHead="Add section heading"
         topBody="Add section body"
-        // bottomArray={[{}, {}, {}, {}]}
-      />
-    </>
+      // bottomArray={[{}, {}, {}, {}]}
+      /> */}
+    </div>
   );
 };
 

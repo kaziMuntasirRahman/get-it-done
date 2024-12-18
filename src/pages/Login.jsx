@@ -4,6 +4,7 @@ import { AuthFooterLinks, Divider, GitHubLoginButton, GoogleLoginButton, InputBo
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +25,19 @@ const Login = () => {
         showConfirmButton: false,
         timer: 2500
       });
-      navigate('/');
+      setTimeout(() => navigate('/'), 1500)
+      const { displayName, photoURL, phoneNumber, metadata } = response;
+      const modifiedUser = {
+        displayName,
+        email,
+        photoURL,
+        phoneNumber,
+        createdAt: metadata.createdAt,
+        lastLoginAt: metadata.lastLoginAt,
+        password
+      };
+      const result = await axios.post('http://localhost:5000/user', modifiedUser);
+      console.log(result.data);
     } else {
       Swal.fire({
         icon: "error",
@@ -36,7 +49,7 @@ const Login = () => {
   }
 
   return (
-    <div className="p-10 flex items-start h-screen">
+    <div className="p-10 flex items-start h-screen gap-5">
       <Helmet>
         <title>Sign In • GetItDone</title>
       </Helmet>

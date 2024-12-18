@@ -16,12 +16,12 @@ const UpdateProfile = () => {
   }
 
   return (
-    <>
+    <div div className="dashboard-body">
+      <Helmet>
+        <title>Update Profile • GetItDone</title>
+      </Helmet>
       <div className="dashboard-main">
         <div className="dashboard-section">
-          <Helmet>
-            <title>Update Profile • GetItDone</title>
-          </Helmet>
           <h1 className="dashboard-title">
             Update Your Profile
           </h1>
@@ -38,9 +38,9 @@ const UpdateProfile = () => {
       <Aside
         topHead="Add section heading"
         topBody="Add section body"
-        // bottomArray={[{}, {}, {}, {}]}
+      // bottomArray={[{}, {}, {}, {}]}
       />
-    </>
+    </div>
   );
 };
 

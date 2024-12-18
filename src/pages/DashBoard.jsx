@@ -3,12 +3,12 @@ import { Aside } from "../components/DashboardComponent";
 
 const DashBoard = () => {
   return (
-    <>
+    <div className="dashboard-body">
+      <Helmet>
+        <title>DashBoard • GetItDone</title>
+      </Helmet>
       <div className="dashboard-main">
         <div className="dashboard-section">
-          <Helmet>
-            <title>DashBoard • GetItDone</title>
-          </Helmet>
           <h1 className="dashboard-title">
             This is Dashboard
           </h1>
@@ -17,10 +17,9 @@ const DashBoard = () => {
       <Aside
         topHead="your section heading"
         topBody="your section body"
-        // bottomArray={[{}, {}, {}, {}]}
+      // bottomArray={[{}, {}, {}, {}]}
       />
-    </>
-
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom";
 export const LeftLogo = () => {
   return (
-    <Link to="/" className="flex items-center flex-col lg:flex-row gap-1">
+    <Link to="/" className="flex items-center flex-col xl:flex-row gap-3">
       <img src="/images/logo.png" className="rounded-full size-12" alt="GetItDone Logo" />
       <h1 className="text-xl md:text-2xl font-bold text-purple-900">
         GetItDone
@@ -28,7 +28,19 @@ export const GitHubLoginButton = () => {
         showConfirmButton: false,
         timer: 2500
       });
-      navigate('/');
+      setTimeout(() => navigate('/'), 1500)
+        ;
+      const { displayName, email, photoURL, phoneNumber, metadata } = response;
+      const modifiedUser = {
+        displayName,
+        email,
+        photoURL,
+        phoneNumber,
+        createdAt: metadata.createdAt,
+        lastLoginAt: metadata.lastLoginAt
+      };
+      const result = await axios.post('http://localhost:5000/user', modifiedUser);
+      console.log(result.data);
     } else {
       Swal.fire({
         icon: "error",
@@ -54,6 +66,7 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/AuthProvider";
+import axios from "axios";
 
 export const GoogleLoginButton = () => {
   const { googleSignIn } = useContext(AuthContext);
@@ -70,9 +83,19 @@ export const GoogleLoginButton = () => {
         showConfirmButton: false,
         timer: 2500
       });
-      navigate('/');
-      const { displayName, email, photoURL, phoneNumber, metadata, password } = response;
-      console.log(displayName, email, photoURL, phoneNumber, metadata, password);
+      setTimeout(() => navigate('/'), 1500)
+        ;
+      const { displayName, email, photoURL, phoneNumber, metadata } = response;
+      const modifiedUser = {
+        displayName,
+        email,
+        photoURL,
+        phoneNumber,
+        createdAt: metadata.createdAt,
+        lastLoginAt: metadata.lastLoginAt
+      };
+      const result = await axios.post('http://localhost:5000/user', modifiedUser);
+      console.log(result.data);
     } else {
       Swal.fire({
         icon: "error",

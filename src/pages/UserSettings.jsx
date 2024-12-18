@@ -3,12 +3,12 @@ import { Aside } from "../components/DashboardComponent";
 
 const UserSettings = () => {
   return (
-    <>
+    <div div className="dashboard-body">
+      <Helmet>
+        <title>Profile Settings • GetItDone</title>
+      </Helmet>
       <div className="dashboard-main">
         <div className="dashboard-section">
-          <Helmet>
-            <title>Profile Settings • GetItDone</title>
-          </Helmet>
           <h1 className="dashboard-title">
             Profile Settings
           </h1>
@@ -17,9 +17,9 @@ const UserSettings = () => {
       <Aside
         topHead="Add section heading"
         topBody="Add section body"
-        // bottomArray={[{}, {}, {}, {}]}
+      // bottomArray={[{}, {}, {}, {}]}
       />
-    </>
+    </div>
   );
 };
 

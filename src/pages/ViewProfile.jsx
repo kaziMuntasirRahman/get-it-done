@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { AuthContext } from "../providers/AuthProvider";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { MdVerifiedUser } from "react-icons/md";
-import { Aside } from "../components/DashboardComponent"
+import { AuthContext } from "../providers/AuthProvider";
+import { Aside } from "../components/DashboardComponent";
 
 const ViewProfile = () => {
   const { user } = useContext(AuthContext);
@@ -11,12 +11,12 @@ const ViewProfile = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [isAvailable, setIsAvailable] = useState(false)
   return (
-    <>
+    <div className="dashboard-body">
+      <Helmet>
+        <title>Profile • GetItDone</title>
+      </Helmet>
       <div className="dashboard-main">
         <div className="dashboard-section">
-          <Helmet>
-            <title>Profile • GetItDone</title>
-          </Helmet>
           {/* <h1 className="dashboard-title">Your Profile</h1> */}
           <div className="bg-violet-50/0 min-h-[500px] rounded-box overflow-hidden relative">
             <img src="/images/demo-img/Editing_And_Deleting_-thumb.jpeg"
@@ -71,7 +71,7 @@ const ViewProfile = () => {
           { title: "Email", value: email },
         ]}
       />
-    </>
+    </div>
   );
 };
 
