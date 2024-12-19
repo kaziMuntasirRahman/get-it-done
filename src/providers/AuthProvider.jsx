@@ -16,12 +16,14 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);  // Set user if logged in
-        console.log(currentUser);
+        // console.log(currentUser);
+        console.log("User is present as: ", currentUser?.displayName);
         const getUserData = async () => {
           setUserDataLoading(true)
           try {
             const response = await axios.get(`http://localhost:5000/users/${currentUser?.email}`)
-            console.log(response.data);
+            // console.log(response.data);
+            console.log("User data loaded");
             setUserData(response.data);
             setUserDataLoading(false);
           } catch (err) {

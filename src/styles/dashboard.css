@@ -37,7 +37,7 @@
 }
 
 .dashboard-aside {
-  @apply flex-initial space-y-6 max-w-96 lg:w-96 sticky top-20 ;
+  @apply lg:flex-initial space-y-6 md:max-w-96 lg:w-96 sticky top-20 ;
 }
 
 .text-shadow {
