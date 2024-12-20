@@ -19,6 +19,9 @@ import UserSettings from "../pages/UserSettings";
 import ViewProfile from "../pages/ViewProfile";
 import DashBoardContainer from "../pages/DashBoardContainer";
 import DashBoard from "../pages/DashBoard";
+import Resources from "../pages/Resources";
+import WhatsNew from "../pages/WhatsNew";
+
 
 const router = createBrowserRouter([
   {
@@ -50,6 +53,8 @@ const router = createBrowserRouter([
       { path: 'user-settings', element: <UserSettings /> },
     ]
   },
+  { path: 'whats-new', element: <WhatsNew /> },
+  { path: 'resources', element: <Resources /> },
   { path: 'signup', element: <Registration /> },
   { path: 'signin', element: <Login /> },
 ]);

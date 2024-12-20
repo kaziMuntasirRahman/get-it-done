@@ -71,45 +71,48 @@ const AddService = () => {
 
       <div className="dashboard-main">
         <div className="dashboard-section w-full p-4">
-          <h1 className="dashboard-title">Add Your Service</h1>
+          <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl p-6 md:p-8 mb-8 text-white">
+            <h1 className="text-2xl md:text-3xl font-bold mb-2">Add New Service</h1>
+            <p className="opacity-90">Create and list your professional services for customers to book.</p>
+          </div>
 
           {/* Service submission form */}
           <form onSubmit={handleAddService} className="flex flex-col md:grid md:grid-cols-2 gap-x-10">
-            <InputBox 
-              label="Service Name" 
-              type="text" 
-              autoFocus={true} 
-              setInputValue={setServiceName} 
-              placeholder="Electrical support" 
-              required 
+            <InputBox
+              label="Service Name"
+              type="text"
+              autoFocus={true}
+              setInputValue={setServiceName}
+              placeholder="Electrical support"
+              required
             />
-            <InputBox 
-              label="Service Image URL" 
-              type="text" 
-              setInputValue={setServiceImgURL} 
-              placeholder="images/profile.jpg" 
-              required 
+            <InputBox
+              label="Service Image URL"
+              type="text"
+              setInputValue={setServiceImgURL}
+              placeholder="images/profile.jpg"
+              required
             />
-            <InputBox 
-              label="Price" 
-              type="number" 
-              setInputValue={setPrice} 
-              min={0} 
-              placeholder="$15" 
-              required 
+            <InputBox
+              label="Price"
+              type="number"
+              setInputValue={setPrice}
+              min={0}
+              placeholder="$15"
+              required
             />
-            <InputBox 
-              label="Service Area" 
-              type="text" 
-              setInputValue={setServiceArea} 
-              placeholder="New Hampshire" 
-              required 
+            <InputBox
+              label="Service Area"
+              type="text"
+              setInputValue={setServiceArea}
+              placeholder="New Hampshire"
+              required
             />
-            <TextArea 
-              label="Description" 
-              rows={4} 
-              setInputValue={setDescription} 
-              required 
+            <TextArea
+              label="Description"
+              rows={4}
+              setInputValue={setDescription}
+              required
             />
             <div className="my-4 col-span-2">
               <SubmitButton />

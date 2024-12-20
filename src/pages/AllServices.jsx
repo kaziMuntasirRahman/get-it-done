@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const AllServices = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1);
-  const [limit, setLimit] = useState(6)
+  const [limit, setLimit] = useState(80)
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true)
 
@@ -57,12 +57,12 @@ const AllServices = () => {
                 <div className="avatar absolute top-3 right-3 size-10 border-white shadow-lg tooltip" data-tip={service.providerName}>
                   <div className="mask mask-squircle w-full bg-white p-0.5">
                     <div className="mask mask-squircle w-full">
-                      <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" alt="Avatar" />
+                      <img src={service.providerImage} alt="Avatar" />
                     </div>
                   </div>
                 </div>
                 <img
-                  src={service.serviceImage}
+                  src={service.image}
                   className="max-w-full md:max-w-none h-64 object-cover md:-mx-6 md:-mt-6 mb-8 rounded-xl"
                   alt=""
                   loading="lazy"
@@ -92,32 +92,37 @@ const AllServices = () => {
         }
       </section>
       {/* pagination */}
-      <div className="join my-10">
-        <button
-          className={`${currentPage === 1 && 'btn-disabled'} join-item btn`}
-          onClick={() => setCurrentPage(currentPage - 1)}>
-          <GrPrevious />
-        </button>
-        {
-          Array(totalPage).fill().map((_, index) =>
-            <input
-              key={index}
-              className="join-item btn btn-square"
-              type="radio"
-              name="options"
-              aria-label={index + 1}
-              checked={currentPage === index + 1}
-              onChange={() => setCurrentPage(index + 1)}
-            />
-          )
-        }
-        <button
-          className={`${currentPage === totalPage && 'btn-disabled'} join-item btn`}
-          onClick={() => setCurrentPage(currentPage + 1)}>
-          <GrNext />
-        </button>
-      </div>
-      page no: {currentPage}
+      {
+        (!loading && totalPage > 1) &&
+        <>
+          <div className="join my-10">
+            <button
+              className={`${currentPage === 1 && 'btn-disabled'} join-item btn`}
+              onClick={() => setCurrentPage(currentPage - 1)}>
+              <GrPrevious />
+            </button>
+            {
+              Array(totalPage).fill().map((_, index) =>
+                <input
+                  key={index}
+                  className="join-item btn btn-square"
+                  type="radio"
+                  name="options"
+                  aria-label={index + 1}
+                  checked={currentPage === index + 1}
+                  onChange={() => setCurrentPage(index + 1)}
+                />
+              )
+            }
+            <button
+              className={`${currentPage === totalPage && 'btn-disabled'} join-item btn`}
+              onClick={() => setCurrentPage(currentPage + 1)}>
+              <GrNext />
+            </button>
+          </div>
+          page no: {currentPage}
+        </>
+      }
     </div>
   );
 };

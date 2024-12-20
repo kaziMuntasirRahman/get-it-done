@@ -20,7 +20,7 @@ const PopularServices = () => {
           )
         }
       </section> */}
-      <section className="grid grid-cols-3 content-between gap-10">
+      <section className="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3  content-between gap-10">
         {
           Array(6).fill().map((_, index) =>
             <article

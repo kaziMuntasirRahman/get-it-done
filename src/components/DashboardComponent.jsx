@@ -29,7 +29,7 @@ export const TopBar = () => {
           </Link>
           <Link
             className="dash-inactive"
-            to='/dashboard'>
+            to='/whats-new'>
             <div className="flex items-center justify-center size-6 lg:bg-gradient-to-b from-white/75 to-violet-100/25 lg:rounded-md lg:shadow-sm shadow-violet-800/10 lg:ring-1 ring-violet-800/10">
               <FaLeaf />
             </div>
@@ -37,7 +37,7 @@ export const TopBar = () => {
           </Link>
           <Link
             className="dash-inactive"
-            to='/dashboard'>
+            to='/resources'>
             <div className="flex items-center justify-center size-6 lg:bg-gradient-to-b from-white/75 to-violet-100/25 lg:rounded-md lg:shadow-sm shadow-violet-800/10 lg:ring-1 ring-violet-800/10">
               <GrResources />
             </div>

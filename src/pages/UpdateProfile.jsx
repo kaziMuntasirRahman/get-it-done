@@ -35,7 +35,6 @@ const UpdateProfile = () => {
     setUpdatedTwitterAddress(userData?.twitterAddress)
   }, [user, userData])
 
-
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     console.log(updatedName, updatedPhotoURL, updatedTitle, updatedBio, updatedCoverPhotoURL, updatedAddress, updatedPhoneNumber, updatedFbAccount, updatedLinkedInAddress, updatedTwitterAddress);
@@ -86,35 +85,122 @@ const UpdateProfile = () => {
         <title>Update Profile • GetItDone</title>
       </Helmet>
       <div className="dashboard-main">
-        <div className="dashboard-section">
-          <h1 className="dashboard-title">
-            Update Your Profile
-          </h1>
-          {/* this is form */}
-          <form onSubmit={handleUpdateProfile} className="grid grid-cols-3 gap-x-6 gap-y-1">
-            <InputBox label="Enter Your Name" type="text" autoFocus={true} setInputValue={setUpdatedName} defaultValue={userLoading ? "Update Name" : displayName} required />
-            <InputBox label="Enter Your Job Title" type="text" setInputValue={setUpdatedTitle} defaultValue={userDataLoading ? "Update Image URL" : updatedTitle} required />
-            <InputBox label="Enter Your Phone Number" type="text" setInputValue={setUpdatedPhoneNumber} defaultValue={userDataLoading ? "Update Image URL" : updatedPhoneNumber} />
+        <div className="dashboard-section max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl p-6 md:p-8 mb-8 text-white">
+            <h1 className="text-2xl md:text-3xl font-bold mb-2">Update Profile</h1>
+            <p className="opacity-90">Keep your profile information up to date and accurate.</p>
+          </div>
 
-            <TextArea label="Write Your Bio" setInputValue={setUpdatedBio} rows={4} defaultValue={userDataLoading ? "Update Image URL" : updatedBio} />
-            <TextArea label="Enter Your Address" customClass="col-span-1" setInputValue={setUpdatedAddress} rows={4} defaultValue={userDataLoading ? "Update Image URL" : updatedAddress} />
+          <div className="p-4 md:p-8">
+            <form onSubmit={handleUpdateProfile} className="space-y-6">
+              {/* Basic Info Section */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gray-50 p-4 rounded-xl">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-4">Basic Information</h3>
+                  <div className="space-y-4">
+                    <InputBox
+                      label="Full Name"
+                      type="text"
+                      autoFocus={true}
+                      setInputValue={setUpdatedName}
+                      defaultValue={userLoading ? "Update Name" : displayName}
+                      required
+                    />
+                    <InputBox
+                      label="Job Title"
+                      type="text"
+                      setInputValue={setUpdatedTitle}
+                      defaultValue={userDataLoading ? "Update Title" : updatedTitle}
+                      required
+                    />
+                    <InputBox
+                      label="Phone Number"
+                      type="tel"
+                      setInputValue={setUpdatedPhoneNumber}
+                      defaultValue={userDataLoading ? "Update Phone" : updatedPhoneNumber}
+                    />
+                  </div>
+                </div>
 
-            <InputBox label="Enter Facebook Account Link" type="text" setInputValue={setUpdatedFbAccount} defaultValue={userDataLoading ? "Update Image URL" : updatedFbAccount} />
-            <InputBox label="Enter LinkedIn Account Link" type="text" setInputValue={setUpdatedLinkedInAddress} defaultValue={userDataLoading ? "Update Image URL" : updatedLinkedInAddress} />
-            <InputBox label="Enter Twitter Account Link" type="text" setInputValue={setUpdatedTwitterAddress} defaultValue={userDataLoading ? "Update Image URL" : updatedTwitterAddress} />
-            <InputBox label="Enter Your Profile Image URL" type="text" setInputValue={setUpdatedPhotoURL} defaultValue={userLoading ? "Update Image URL" : photoURL} required />
-            <InputBox label="Enter Your Cover Photo URL" type="text" setInputValue={setUpdatedCoverPhotoURL} defaultValue={userDataLoading ? "Update Image URL" : updatedCoverPhotoURL} />
-            <div className="my-4 col-span-2 xl:col-span-1 xl:col-start-2">
-              <SubmitButton text="Update" />
-            </div>
-          </form>
+                <div className="bg-gray-50 p-4 rounded-xl">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-4">Profile Images</h3>
+                  <div className="space-y-4">
+                    <InputBox
+                      label="Profile Image URL"
+                      type="url"
+                      setInputValue={setUpdatedPhotoURL}
+                      defaultValue={userLoading ? "" : photoURL}
+                      required
+                    />
+                    <InputBox
+                      label="Cover Photo URL"
+                      type="url"
+                      setInputValue={setUpdatedCoverPhotoURL}
+                      defaultValue={userDataLoading ? "" : updatedCoverPhotoURL}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Bio & Social Section */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="bg-gray-50 p-4 rounded-xl">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-4">About You</h3>
+                  <div className="space-y-4">
+                    <TextArea
+                      label="Bio"
+                      setInputValue={setUpdatedBio}
+                      rows={4}
+                      defaultValue={userDataLoading ? "Update Bio" : updatedBio}
+                    />
+                    <TextArea
+                      label="Address"
+                      setInputValue={setUpdatedAddress}
+                      rows={4}
+                      defaultValue={userDataLoading ? "Update Address" : updatedAddress}
+                    />
+                  </div>
+                </div>
+
+                <div className="bg-gray-50 p-4 rounded-xl">
+                  <h3 className="text-lg font-semibold text-gray-700 mb-4">Social Links</h3>
+                  <div className="space-y-4">
+                    <InputBox
+                      label="Facebook Profile"
+                      type="url"
+                      setInputValue={setUpdatedFbAccount}
+                      defaultValue={userDataLoading ? "" : updatedFbAccount}
+                      placeholder="https://facebook.com/username"
+                    />
+                    <InputBox
+                      label="LinkedIn Profile"
+                      type="url"
+                      setInputValue={setUpdatedLinkedInAddress}
+                      defaultValue={userDataLoading ? "" : updatedLinkedInAddress}
+                      placeholder="https://linkedin.com/in/username"
+                    />
+                    <InputBox
+                      label="Twitter Profile"
+                      type="url"
+                      setInputValue={setUpdatedTwitterAddress}
+                      defaultValue={userDataLoading ? "" : updatedTwitterAddress}
+                      placeholder="https://twitter.com/username"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex justify-center pt-6">
+                <SubmitButton
+                  text="Update Profile"
+                  className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-teal-500 to-blue-600 text-white rounded-lg hover:opacity-90 transition-opacity"
+                />
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-      {/* <Aside
-        topHead="Add section heading"
-        topBody="Add section body"
-      bottomArray={[{}, {}, {}, {}]}
-      /> */}
     </div>
   );
 };

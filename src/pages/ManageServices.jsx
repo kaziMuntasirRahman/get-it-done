@@ -54,7 +54,7 @@ const ManageServices = () => {
         // Close modal by unchecking the checkbox
         const modalCheckbox = document.getElementById(`update-modal-${id}`);
         const closeModal = () => {
-          if (modalCheckbox) {  
+          if (modalCheckbox) {
             modalCheckbox.checked = false;
           }
         }
@@ -152,8 +152,13 @@ const ManageServices = () => {
         <title>Manage Services • GetItDone</title>
       </Helmet>
 
+
       <div className="dashboard-main">
-        <div className="dashboard-section w-full px-3 md:px-6 py-5">
+        <div className="dashboard-section w-full px-3 md:px-6">
+          <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl p-6 md:p-8 mb-8 text-white">
+            <h1 className="text-2xl md:text-3xl font-bold mb-2">Manage Services</h1>
+            <p className="opacity-90">View, edit, and control all your listed services in one place.</p>
+          </div>
           <h1 className="dashboard-title !text-center">Manage Your Services</h1>
           <div className="overflow-x-auto  table">
             <table className="table">

@@ -1,5 +1,5 @@
-import FirstRelevant from "../components/1stRelevent";
-import ThirdRelevant from "../components/3rdRelevant";
+import HomeHero from "../components/HomeHero";
+import ServiceHighlights from "../components/ServiceHighlights";
 import Header from "../components/Header";
 import PopularServices from "../components/PopularServices";
 import HowItWorks from "../components/HowItWorks";
@@ -10,8 +10,8 @@ const Home = () => {
       <Header />
       <PopularServices />
       <HowItWorks />
-      <FirstRelevant />
-      <ThirdRelevant />
+      <HomeHero />
+      <ServiceHighlights />
     </div>
   );
 };
