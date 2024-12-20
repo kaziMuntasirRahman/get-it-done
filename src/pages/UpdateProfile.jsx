@@ -1,11 +1,10 @@
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { InputBox, SubmitButton, TextArea } from "../components/AuthPageComponent";
-import { Aside } from "../components/DashboardComponent";
-import { AuthContext } from "../providers/AuthProvider";
-import Swal from "sweetalert2";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { InputBox, SubmitButton, TextArea } from "../components/AuthPageComponent";
+import { AuthContext } from "../providers/AuthProvider";
 
 const UpdateProfile = () => {
   const { user, userLoading, userData, userDataLoading, updateUser } = useContext(AuthContext);
@@ -40,9 +39,9 @@ const UpdateProfile = () => {
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     console.log(updatedName, updatedPhotoURL, updatedTitle, updatedBio, updatedCoverPhotoURL, updatedAddress, updatedPhoneNumber, updatedFbAccount, updatedLinkedInAddress, updatedTwitterAddress);
-    
+
     const response = await updateUser(updatedName, updatedPhotoURL);
-    
+
     if (response) {
       const updatedUser = {
         email: user.email,
@@ -57,10 +56,10 @@ const UpdateProfile = () => {
         linkedInAddress: updatedLinkedInAddress,
         twitterAddress: updatedTwitterAddress
       };
-      
+
       const result = await axios.patch('http://localhost:5000/users', updatedUser);
       console.log(result.data);
-      
+
       Swal.fire({
         position: "center",
         icon: "success",
@@ -69,7 +68,7 @@ const UpdateProfile = () => {
         showConfirmButton: false,
         timer: 2500
       });
-      
+
       setTimeout(() => navigate('/dashboard/view-profile'), 1500);
     } else {
       Swal.fire({
@@ -80,9 +79,9 @@ const UpdateProfile = () => {
       });
     }
   };
-  
+
   return (
-    <div div className="dashboard-body">
+    <div className="dashboard-body">
       <Helmet>
         <title>Update Profile • GetItDone</title>
       </Helmet>

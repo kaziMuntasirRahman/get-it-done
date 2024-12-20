@@ -2,7 +2,7 @@ import { Aside } from "./DashBoardContainer";
 
 export const DefaultDashboardBodyFormat = () => {
   return (
-    <div div className="dashboard-body">
+    <div className="dashboard-body">
       <Helmet>
         <title>Profile • GetItDone</title>
       </Helmet>

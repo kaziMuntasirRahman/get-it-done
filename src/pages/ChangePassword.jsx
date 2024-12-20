@@ -3,7 +3,7 @@ import { Aside } from "../components/DashboardComponent";
 
 const ChangePassword = () => {
   return (
-    <div div className="dashboard-body">
+    <div className="dashboard-body">
       <Helmet>
         <title>Change Password • GetItDone</title>
       </Helmet>

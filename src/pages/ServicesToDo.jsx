@@ -3,7 +3,7 @@ import { Aside } from "../components/DashboardComponent";
 
 const ServicesToDo = () => {
   return (
-    <div div className="dashboard-body">
+    <div className="dashboard-body">
       <Helmet>
         <title>Services To Do • GetItDone</title>
       </Helmet>

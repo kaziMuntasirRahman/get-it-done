@@ -1,23 +1,28 @@
+import axios from "axios";
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { InputBox, SubmitButton, TextArea } from "../components/AuthPageComponent";
-import { Aside } from "../components/DashboardComponent";
-import { AuthContext } from "../providers/AuthProvider";
-import axios from "axios";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { InputBox, SubmitButton, TextArea } from "../components/AuthPageComponent";
+import { AuthContext } from "../providers/AuthProvider";
 
 const AddService = () => {
-  const [serviceName, setServiceName] = useState("")
-  const [serviceImgURL, setServiceImgURL] = useState("")
-  const [price, setPrice] = useState(0)
-  const [serviceArea, setServiceArea] = useState("")
-  const [description, setDescription] = useState("")
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate()
+  // State variables for form inputs
+  const [serviceName, setServiceName] = useState("");
+  const [serviceImgURL, setServiceImgURL] = useState("");
+  const [price, setPrice] = useState(0);
+  const [serviceArea, setServiceArea] = useState("");
+  const [description, setDescription] = useState("");
 
+  // Get user context and navigation
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  // Handle form submission
   const handleAddService = async (e) => {
     e.preventDefault();
+
+    // Create service object from form data
     const service = {
       title: serviceName,
       image: serviceImgURL,
@@ -27,11 +32,14 @@ const AddService = () => {
       providerEmail: user?.email,
       providerName: user?.displayName,
       providerImg: user?.photoURL
-    }
-    console.log(service);
+    };
+
     try {
-      const response = await axios.post('http://localhost:5000/services', service)
+      // Send POST request to add service
+      const response = await axios.post('http://localhost:5000/services', service);
+
       if (response.data.insertedId) {
+        // Show success message
         Swal.fire({
           position: "center",
           icon: "success",
@@ -41,9 +49,11 @@ const AddService = () => {
           timer: 2500
         });
       }
-      setTimeout(() => navigate('/dashboard/manage-services'), 1500)
+      // Navigate to manage services after delay
+      setTimeout(() => navigate('/dashboard/manage-services'), 1500);
     } catch (err) {
       console.log(err);
+      // Show error message
       Swal.fire({
         icon: "error",
         title: "Failed to add service",
@@ -51,36 +61,69 @@ const AddService = () => {
         footer: '<a href="#">Need help signing in?</a>'
       });
     }
-
-  }
+  };
 
   return (
-    <div div className="dashboard-body">
+    <div className="dashboard-body">
       <Helmet>
         <title>Add Service • GetItDone</title>
       </Helmet>
+
       <div className="dashboard-main">
         <div className="dashboard-section w-full p-4">
           <h1 className="dashboard-title">Add Your Service</h1>
-          {/* form section */}
+
+          {/* Service submission form */}
           <form onSubmit={handleAddService} className="flex flex-col md:grid md:grid-cols-2 gap-x-10">
-            <InputBox label="Service Name" type="text" autoFocus={true} setInputValue={setServiceName} placeholder="Electrical support" required />
-            <InputBox label="Service Image URL" type="text" setInputValue={setServiceImgURL} placeholder="images/profile.jpg" required />
-            <InputBox label="Price" type="number" setInputValue={setPrice} min={0} placeholder="$15" required />
-            <InputBox label="Service Area" type="text" setInputValue={setServiceArea} placeholder="New Hampshire" required />
-            {/* description */}
-            <TextArea label="Description" rows={4} setInputValue={setDescription} required />
+            <InputBox 
+              label="Service Name" 
+              type="text" 
+              autoFocus={true} 
+              setInputValue={setServiceName} 
+              placeholder="Electrical support" 
+              required 
+            />
+            <InputBox 
+              label="Service Image URL" 
+              type="text" 
+              setInputValue={setServiceImgURL} 
+              placeholder="images/profile.jpg" 
+              required 
+            />
+            <InputBox 
+              label="Price" 
+              type="number" 
+              setInputValue={setPrice} 
+              min={0} 
+              placeholder="$15" 
+              required 
+            />
+            <InputBox 
+              label="Service Area" 
+              type="text" 
+              setInputValue={setServiceArea} 
+              placeholder="New Hampshire" 
+              required 
+            />
+            <TextArea 
+              label="Description" 
+              rows={4} 
+              setInputValue={setDescription} 
+              required 
+            />
             <div className="my-4 col-span-2">
               <SubmitButton />
             </div>
           </form>
         </div>
       </div>
-      <Aside
+
+      {/* Commented out Aside component */}
+      {/* <Aside
         topHead="Add section heading"
         topBody="Add section body"
-      // bottomArray={[{}, {}, {}, {}]}
-      />
+        bottomArray={[{}, {}, {}, {}]}
+      /> */}
     </div>
   );
 };

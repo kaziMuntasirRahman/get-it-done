@@ -3,7 +3,7 @@ import { Aside } from "../components/DashboardComponent";
 
 const Notifications = () => {
   return (
-    <div div className="dashboard-body">
+    <div className="dashboard-body">
       <Helmet>
         <title>Notification • GetItDone</title>
       </Helmet>

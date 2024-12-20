@@ -136,18 +136,20 @@ export const Navbar = () => {
   // console.log(location);
 
   const handleLogOut = async () => {
-    const res = await logOut();
-    if (res.success) {
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "You've successfully logged out of GetItDone!",
-        text: "We hope to see you again soon.",
-        showConfirmButton: false,
-        timer: 2500
-      });
-      setTimeout(()=>navigate('/'), 1)
-    } else {
+    try {
+      const res = await logOut();
+      if (res.success) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "You've successfully logged out of GetItDone!",
+          text: "We hope to see you again soon.",
+          showConfirmButton: false,
+          timer: 2500
+        });
+        setTimeout(() => navigate('/'), 1)
+      }
+    } catch (err) {
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -161,8 +163,8 @@ export const Navbar = () => {
     <nav className='dashboard-navbar'>
       <button className="btn btn-sm bg-[#7C3AED] text-white w-full !h-[38px]">
         <p className="nav-text">{user?.displayName.toUpperCase()}</p>
-        <p className="block lg:hidden">{user?.displayName.toUpperCase().slice(0,1)}</p>
-        </button>
+        <p className="block lg:hidden">{user?.displayName.toUpperCase().slice(0, 1)}</p>
+      </button>
       <NavLink
         className={({ isActive, isPending }) =>
           isActive

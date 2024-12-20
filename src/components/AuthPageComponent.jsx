@@ -62,11 +62,11 @@ export const GitHubLoginButton = () => {
 };
 
 // --------------------- Google login button -------------------
+import axios from "axios";
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { AuthContext } from "../providers/AuthProvider";
-import axios from "axios";
 
 export const GoogleLoginButton = () => {
   const { googleSignIn } = useContext(AuthContext);
@@ -149,18 +149,21 @@ export const InputBox = ({ label, type, autoFocus = false, setInputValue, min, m
 }
 
 // large text submit box-------------------------
-export const TextArea = ({ label, setInputValue, rows = 2, defaultValue, customClass }) => {
+export const TextArea = ({ label, rows, setInputValue, defaultValue, required }) => {
   return (
-    <label className={`" col-span-2 block text-sm font-medium mb-6 ${customClass}`}>
-      {label}
+    <div className="form-control col-span-2">
+      <label className="label">
+        <span className="label-text">{label}</span>
+      </label>
       <textarea
-        placeholder="Maximum 200 words."
+        className="mt-1.5 transition appearance-none block w-full p-3 rounded-xl shadow-sm border border-[#D7DFE9] hover:border-violet-200 focus:border-violet-300 bg-violet-50 bg-opacity-0 hover:bg-opacity-50 focus:bg-opacity-50 ring-violet-200 focus:ring-violet-200 focus:ring-[3px] focus:outline-none"
+        placeholder={`Enter ${label}`}
         rows={rows}
-        defaultValue={defaultValue}
-        className="textarea textarea-bordered w-full mt-1.5 transition appearance-none block p-3 rounded-xl shadow-sm border border-[#D7DFE9] hover:border-violet-200 focus:border-violet-300 bg-violet-50 bg-opacity-0 hover:bg-opacity-50 focus:bg-opacity-50 ring-violet-200 focus:ring-violet-200 focus:ring-[3px] focus:outline-none"
-        onChange={e => setInputValue(e.target.value)}
-      >{defaultValue}</textarea>
-    </label>
+        onChange={(e) => setInputValue(e.target.value)}
+        defaultValue={defaultValue || ''}
+        required={required}
+      />
+    </div>
   )
 }
 
