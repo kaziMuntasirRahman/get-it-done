@@ -21,6 +21,7 @@ import DashBoardContainer from "../pages/DashBoardContainer";
 import DashBoard from "../pages/DashBoard";
 import Resources from "../pages/Resources";
 import WhatsNew from "../pages/WhatsNew";
+import Service from "../pages/Service";
 
 
 const router = createBrowserRouter([
@@ -53,8 +54,11 @@ const router = createBrowserRouter([
       { path: 'user-settings', element: <UserSettings /> },
     ]
   },
-  { path: 'whats-new', element: <WhatsNew /> },
-  { path: 'resources', element: <Resources /> },
+  { path: '/services/:id', element: <PrivateRoute><Service /></PrivateRoute>,
+    loader: ({params}) => params.id
+   },
+  { path: 'whats-new', element: <PrivateRoute><WhatsNew /></PrivateRoute> },
+  { path: 'resources', element: <PrivateRoute><Resources /></PrivateRoute> },
   { path: 'signup', element: <Registration /> },
   { path: 'signin', element: <Login /> },
 ]);

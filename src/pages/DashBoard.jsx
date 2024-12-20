@@ -13,20 +13,28 @@ const DashBoard = () => {
     totalEarnings: 0,
     avgRating: 0
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const fetchUserStats = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/user-stats/${user?.email}`);
-        setUserStats(response.data);
-      } catch (err) {
-        console.error("Failed to fetch user stats:", err);
-      }
-    };
-    if (user?.email) {
-      fetchUserStats();
-    }
-  }, [user]);
+    // Simulate loading time
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
+  // useEffect(() => {
+  //   const fetchUserStats = async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:5000/user-stats/${user?.email}`);
+  //       setUserStats(response.data);
+  //     } catch (err) {
+  //       console.error("Failed to fetch user stats:", err);
+  //     }
+  //   };
+  //   if (user?.email) {
+  //     fetchUserStats();
+  //   }
+  // }, [user]);
 
   return (
     <main className="flex-1 p-4 md:p-6 lg:p-8 max-w-full overflow-x-hidden">
@@ -34,13 +42,23 @@ const DashBoard = () => {
         <title>Dashboard • GetItDone</title>
       </Helmet>
 
-      {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl p-6 md:p-8 mb-8 text-white">
-        <h1 className="text-2xl md:text-3xl font-bold mb-2">
-          Welcome back, {user?.displayName || 'User'}!
-        </h1>
-        <p className="opacity-90">Here's what's happening with your services today.</p>
-      </div>
+      {isLoading ? (
+        <div className="animate-pulse">
+          <div className="bg-gradient-to-r from-gray-200 to-gray-300 rounded-2xl p-6 md:p-8 mb-8 h-32"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {[1, 2, 3, 4].map((item) => (
+              <div key={item} className="bg-gray-200 rounded-xl p-6 h-24"></div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="bg-gradient-to-r from-teal-500 to-blue-600 rounded-2xl p-6 md:p-8 mb-8 text-white">
+          <h1 className="text-2xl md:text-3xl font-bold mb-2">
+            Welcome back, {user?.displayName || 'User'}!
+          </h1>
+          <p className="opacity-90">Here's what's happening with your services today.</p>
+        </div>
+      )}
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">

@@ -1,45 +1,22 @@
 import { Helmet } from "react-helmet-async";
 import { Aside } from "../components/DashboardComponent";
-import { FaCalendarCheck, FaClock, FaTimes, FaEye } from "react-icons/fa";
-import { useState } from "react";
+import { FaClock, FaTimes, FaEye } from "react-icons/fa";
+import { useState, useEffect, useContext } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
+import { AuthContext } from "../providers/AuthProvider";
 
 const ServicesToDo = () => {
-  const [servicesToDo] = useState([
-    {
-      id: 1,
-      serviceName: "House Painting",
-      client: "Sarah Johnson",
-      date: "2024-03-16",
-      time: "11:00 AM",
-      location: "234 Pine St, New York",
-      status: "Scheduled",
-      price: 350,
-      description: "Full interior house painting service including walls, trim and ceiling"
-    },
-    {
-      id: 2,
-      serviceName: "Electrical Repair",
-      client: "Mike Anderson",
-      date: "2024-03-19",
-      time: "3:00 PM",
-      location: "567 Elm Ave, New York",
-      status: "In Progress",
-      price: 220,
-      description: "Fix electrical outlets and install new lighting fixtures"
-    },
-    {
-      id: 3,
-      serviceName: "Window Cleaning",
-      client: "Lisa Brown",
-      date: "2024-03-21",
-      time: "10:00 AM",
-      location: "890 Maple Dr, New York",
-      status: "Pending",
-      price: 150,
-      description: "Professional window cleaning for two-story house"
-    }
-  ]);
+  const [servicesToDo, setServicesToDo] = useState([]);
+  const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    const fetchServicesToDo = async () => {
+      const response = await axios.get(`http://localhost:5000/bookings/provider/${user.email}`);
+      setServicesToDo(response.data);
+    };
+    fetchServicesToDo();
+  }, [user.email]);
 
   const handleCancelService = (serviceId) => {
     Swal.fire({

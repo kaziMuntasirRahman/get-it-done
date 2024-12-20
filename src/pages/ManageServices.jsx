@@ -9,7 +9,7 @@ import { AuthContext } from '../providers/AuthProvider';
 
 const ManageServices = () => {
   const { user } = useContext(AuthContext)
-  const [uiServices, setUIServices] = useState([]);
+  const [uiServices, setUIServices] = useState([]); 
 
   const [updateServiceName, setUpdateServiceName] = useState("");
   const [updateServiceImage, setUpdateServiceImage] = useState("");
@@ -27,15 +27,24 @@ const ManageServices = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/services/${user?.email}`)
-        // console.log(response.data[0])
-        setUIServices(response.data)
+        const response = await axios.get(`http://localhost:5000/services?email=${user?.email}`);
+        console.log(response.data)
+        setUIServices(Array.isArray(response.data) ? response.data : []);
       } catch (err) {
-        console.log(err);
+        console.error('Error fetching services:', err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Error Loading Services',
+          text: 'There was a problem loading your services. Please try again later.',
+        });
+        setUIServices([]);
       }
     }
-    fetchServices()
-  }, [user])
+
+    if (user?.email) {
+      fetchServices();
+    }
+  }, [user?.email]);
 
   const handleUpdateService = async (e, id) => {
     e.preventDefault();
@@ -103,7 +112,7 @@ const ManageServices = () => {
     //   if (result.isConfirmed) {
     if (!answer.isConfirmed) return;
     try {
-      const response = await axios.delete(`http://localhost:5000/services?email=${user?.email}&id=${id}`)
+      const response = await axios.delete(`http://localhost:5000/user/services?email=${user?.email}&id=${id}`)
       console.log(response.data)
       if (response.data.deletedCount > 0) {
         Swal.fire({
@@ -176,7 +185,7 @@ const ManageServices = () => {
               </thead>
               <tbody>
                 {
-                  uiServices.map((service, index) =>
+                  Array.isArray(uiServices) && uiServices.map((service, index) =>
                     <tr key={index} className={`hover:bg-violet-200 transition-all duration-500 ${index % 2 === 0 ? 'bg-slate-100' : ''}`}>
                       <th className='text-center'>{index + 1}</th>
                       <td className='text-start'>{service.title}</td>

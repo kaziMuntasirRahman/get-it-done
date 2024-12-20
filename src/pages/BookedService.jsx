@@ -1,51 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { FaCalendarCheck, FaClock, FaEye, FaTimes } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Aside } from "../components/DashboardComponent";
+import axios from "axios";
+import { AuthContext } from "../providers/AuthProvider";
 
 const BookedService = () => {
-  const [bookedServices] = useState([
-    {
-      id: 1,
-      serviceName: "House Cleaning",
-      provider: "Jane Smith",
-      providerImage: "https://i.ibb.co/VvC0vpN/paint-white-bg.png",
-      date: "2024-03-15",
-      time: "10:00 AM",
-      location: "123 Main St, New York",
-      status: "Upcoming",
-      price: 120,
-      description: "Full house cleaning service including dusting, vacuuming, and mopping",
-      serviceImage: "https://i.ibb.co/VvC0vpN/paint-white-bg.png"
-    },
-    {
-      id: 2,
-      serviceName: "Plumbing Repair",
-      provider: "John Wilson",
-      providerImage: "https://i.ibb.co/VvC0vpN/paint-white-bg.png",
-      date: "2024-03-18",
-      time: "2:00 PM",
-      location: "456 Park Ave, New York",
-      status: "Completed",
-      price: 180,
-      description: "Fix leaking pipes and unclog drains in bathroom",
-      serviceImage: "https://i.ibb.co/VvC0vpN/paint-white-bg.png"
-    },
-    {
-      id: 3,
-      serviceName: "Lawn Mowing",
-      provider: "Mike Johnson",
-      providerImage: "https://i.ibb.co/VvC0vpN/paint-white-bg.png",
-      date: "2024-03-20",
-      time: "9:00 AM",
-      location: "789 Oak Dr, New York",
-      status: "Pending",
-      price: 90,
-      description: "Mow front and back lawn, trim edges, and remove debris",
-      serviceImage: "https://i.ibb.co/VvC0vpN/paint-white-bg.png"
-    }
-  ]);
+  const [bookedServices, setBookedServices] = useState([]);
+  const { user } = useContext(AuthContext);
+
+
+  useEffect(() => {
+    const fetchBookedServices = async () => {
+      const response = await axios.get(`http://localhost:5000/bookings/${user.email}`);
+      setBookedServices(response.data);
+      console.log(response.data);
+    };
+    fetchBookedServices();
+  }, [user.email]);
+
 
   const handleCancelService = (serviceId) => {
     Swal.fire({
@@ -74,15 +48,15 @@ const BookedService = () => {
       html: `
         <div class="text-left">
           <div class="relative w-full h-48 mb-6 rounded-t-lg overflow-hidden">
-            <img src="${service.serviceImage}" alt="${service.serviceName}" class="w-full h-full object-cover" />
+            <img src="${service.image}" alt="${service.title}" class="w-full h-full object-cover" />
             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-              <h2 class="text-2xl font-bold text-white">${service.serviceName}</h2>
+              <h2 class="text-2xl font-bold text-white">${service.title}</h2>
             </div>
           </div>
           
           <div class="px-6">
             <div class="flex items-center gap-4 mb-6">
-              <img src="${service.providerImage}" alt="${service.provider}" class="w-16 h-16 rounded-full border-4 border-white shadow-lg" />
+              <img src="${service.providerImage}" alt="${service.providerName}" class="w-16 h-16 rounded-full border-4 border-white shadow-lg" />
               <div>
                 <p class="text-lg font-semibold text-gray-800">${service.provider}</p>
                 <span class="inline-flex items-center gap-1 text-sm text-violet-600">
@@ -165,14 +139,14 @@ const BookedService = () => {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {bookedServices.map(service => (
-                  <tr key={service.id} className="hover:bg-gray-50">
+                  <tr key={service._id} className="hover:bg-gray-50">
                     <td className="px-4 py-3">
-                      <span className="text-sm text-gray-900 font-medium">{service.serviceName}</span>
+                      <span className="text-sm text-gray-900 font-medium">{service.title}</span>
                     </td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-1">
                         <FaClock className="text-violet-600 text-sm" />
-                        <span className="text-sm text-gray-600">{service.date}</span>
+                        <span className="text-sm text-gray-600">{service.bookingDate}</span>
                       </div>
                     </td>
                     <td className="px-4 py-3">
@@ -181,6 +155,7 @@ const BookedService = () => {
                           service.status === 'Completed' ? 'bg-green-100 text-green-600' :
                             'bg-yellow-100 text-yellow-600'}`}>
                         {service.status}
+                        pending
                       </span>
                     </td>
                     <td className="px-4 py-3">

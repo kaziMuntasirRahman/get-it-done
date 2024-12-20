@@ -6,8 +6,8 @@ import { GrNext, GrPrevious } from "react-icons/gr";
 import { Link } from "react-router-dom";
 const AllServices = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPage, setTotalPage] = useState(1);
-  const [limit, setLimit] = useState(80)
+  const [totalPage, setTotalPage] = useState(5);
+  const [limit, setLimit] = useState(12)
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true)
 
@@ -19,15 +19,14 @@ const AllServices = () => {
         setServices(response.data.result)
         setTotalPage(response.data.totalPages)
       } catch (err) {
-
+        console.log(err)
+        setServices([])
       } finally {
         setLoading(false)
       }
     }
     fetchData()
   }, [currentPage])
-  console.log(services);
-  console.log(totalPage);
 
 
   return (
@@ -35,13 +34,20 @@ const AllServices = () => {
       <Helmet>
         <title>All Services</title>
       </Helmet>
-      <h1 className="section-title">
-        All Services
-      </h1>
+
+      {/* Header Section */}
+      <div className="w-full bg-gradient-to-r from-teal-500 to-blue-600 py-12 mb-12 rounded-2xl text-white text-center relative">
+        <h1 className="text-4xl font-bold mb-4">All Services</h1>
+        <p className="text-teal-100">Browse through our collection of professional services</p>
+        <div className="absolute top-4 right-6 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full">
+          <span className="text-teal-100">Showing page {currentPage} of {totalPage}</span>
+        </div>
+      </div>
+
       <section className="w-[1200px] grid grid-cols-3 gap-4 justify-between">
         {
           loading ?
-            Array(6).fill().map((_, index) =>
+            Array(limit).fill().map((_, index) =>
               <div key={index} className="flex flex-col gap-3 md:w-full h-[520px] py-6 md:p-8 bg-white md:focus-within:ring ring-teal-300 md:hover:shadow-teal md:focus-within:shadow-teal transition-all relative rounded-2xl md:shadow-sm-teal shadow-md hover:shadow-xl duration-500">
                 <div className="skeleton h-32 w-full"></div>
                 <div className="skeleton h-4 w-28"></div>
@@ -82,7 +88,7 @@ const AllServices = () => {
                 </p>
 
                 <Link
-                  to="/"
+                  to={`/services/${service._id}`}
                   className="text-teal-700 font-semibold mt-auto max-w-fit inline-flex items-center gap-1">
                   <p>View details</p>
                   <FaArrowRight />
@@ -93,35 +99,37 @@ const AllServices = () => {
       </section>
       {/* pagination */}
       {
-        (!loading && totalPage > 1) &&
-        <>
-          <div className="join my-10">
-            <button
-              className={`${currentPage === 1 && 'btn-disabled'} join-item btn`}
-              onClick={() => setCurrentPage(currentPage - 1)}>
-              <GrPrevious />
-            </button>
-            {
-              Array(totalPage).fill().map((_, index) =>
-                <input
-                  key={index}
-                  className="join-item btn btn-square"
-                  type="radio"
-                  name="options"
-                  aria-label={index + 1}
-                  checked={currentPage === index + 1}
-                  onChange={() => setCurrentPage(index + 1)}
-                />
-              )
-            }
-            <button
-              className={`${currentPage === totalPage && 'btn-disabled'} join-item btn`}
-              onClick={() => setCurrentPage(currentPage + 1)}>
-              <GrNext />
-            </button>
-          </div>
-          page no: {currentPage}
-        </>
+        totalPage > 1 &&
+            <>
+              <div className="join my-10">
+                <button
+                  className={`${currentPage === 1 && 'btn-disabled'} join-item btn`}
+                  onClick={() => setCurrentPage(currentPage - 1)}>
+                  <GrPrevious />
+                </button>
+                {
+                  Array(totalPage).fill().map((_, index) =>
+                    <input
+                      key={index}
+                      className="join-item btn btn-square"
+                      type="radio"
+                      name="options"
+                      aria-label={index + 1}
+                      checked={currentPage === index + 1}
+                      onChange={() => setCurrentPage(index + 1)}
+                    />
+                  )
+                }
+                <button
+                  className={`${currentPage === totalPage && 'btn-disabled'} join-item btn`}
+                  onClick={() => setCurrentPage(currentPage + 1)}>
+                  <GrNext />
+                </button>
+              </div>
+              <div className="text-center mb-8 text-gray-600 bg-gray-100 px-6 py-2 rounded-full">
+                Current Page: <span className="font-semibold text-teal-600">{currentPage}</span>
+              </div>
+            </>
       }
     </div>
   );

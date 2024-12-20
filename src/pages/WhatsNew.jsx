@@ -1,9 +1,53 @@
 import { Helmet } from "react-helmet-async";
 import { FaCalendar, FaCode, FaBug, FaRocket } from "react-icons/fa";
 import { TopBar } from "../components/DashboardComponent";
-import { InputBox } from "../components/AuthPageComponent";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const WhatsNew = () => {
+  const {user} = useContext(AuthContext);
+  const [email, setEmail] = useState("");
+
+  useEffect(() => { 
+    setEmail(user?.email);
+  }, [user]);
+
+  const handleAddSubscriber = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/subscribers", {email} );
+      if (response.data.insertedId) { 
+        console.log("Subscriber added successfully:", response.data);
+        Swal.fire({ 
+          title: "Success", 
+          text: "You are now subscribed to our newsletter",
+          icon: "success",
+          confirmButtonText: "OK"
+        });
+        setEmail("");
+      }
+    } catch (error) {
+      console.log(error);
+      if(error.response.status === 400){
+        Swal.fire({
+          title: "Already Subscribed",
+          text: "You are already subscribed to our newsletter",
+          icon: "warning",
+          confirmButtonText: "OK"
+        });
+      }else if(error.response.status === 500){
+        Swal.fire({
+          title: "Error",
+          text: "An error occurred while adding your email. Please try again.",
+          icon: "error",
+          confirmButtonText: "OK"
+        });
+      } 
+    }
+  };
+
   const updates = [
     {
       id: 1,
@@ -16,7 +60,7 @@ const WhatsNew = () => {
     {
       id: 2,
       type: "Improvement",
-      date: "March 10, 2024", 
+      date: "March 10, 2024",
       title: "UI/UX Updates",
       description: "Refreshed dashboard interface with better accessibility",
       icon: <FaCode className="text-blue-600" />
@@ -32,7 +76,7 @@ const WhatsNew = () => {
     {
       id: 4,
       type: "New Feature",
-      date: "March 1, 2024", 
+      date: "March 1, 2024",
       title: "Service Provider Analytics",
       description: "New analytics dashboard for service providers",
       icon: <FaRocket className="text-green-600" />
@@ -99,9 +143,13 @@ const WhatsNew = () => {
             <input
               type="email"
               placeholder="Enter your email"
+              defaultValue={email}
               className="transition appearance-none w-full p-3 rounded-xl shadow-sm border border-[#D7DFE9] hover:border-violet-200 focus:border-violet-300 focus:bg-white bg-opacity-0 hover:bg-opacity-50 focus:bg-opacity-50 ring-violet-200 focus:ring-violet-200 focus:ring-[3px] focus:outline-none"
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <button className="bg-violet-600 text-white px-6 py-3 rounded-lg hover:bg-violet-700 transition-colors">
+            <button
+            className="bg-violet-600 text-white px-6 py-3 rounded-lg hover:bg-violet-700 transition-colors"
+            onClick={handleAddSubscriber}>
               Subscribe
             </button>
           </div>

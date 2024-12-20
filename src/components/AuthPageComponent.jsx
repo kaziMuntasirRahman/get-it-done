@@ -128,7 +128,7 @@ export const Divider = () => {
 };
 
 // ----------------------------------------
-export const InputBox = ({ label, type, autoFocus = false, setInputValue, min, max, placeholder, defaultValue, required = false }) => {
+export const InputBox = ({ label, type, autoFocus = false, setInputValue, min, max, placeholder, defaultValue, required = false, value, disabled = false }) => {
   return (
     <label className="block text-sm font-medium mb-6">
       {label}
@@ -139,6 +139,8 @@ export const InputBox = ({ label, type, autoFocus = false, setInputValue, min, m
         max={max}
         placeholder={placeholder}
         defaultValue={defaultValue}
+        value={value}
+        disabled={disabled}
         // min={new Date().toISOString().split("T")[0]} // restrict to today's date and future dates
         className="mt-1.5 transition appearance-none block w-full p-3 rounded-xl shadow-sm border border-[#D7DFE9] hover:border-violet-200 focus:border-violet-300 bg-violet-50 bg-opacity-0 hover:bg-opacity-50 focus:bg-opacity-50 ring-violet-200 focus:ring-violet-200 focus:ring-[3px] focus:outline-none"
         required={required}
