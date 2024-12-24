@@ -1,10 +1,10 @@
+import axios from "axios";
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { AuthFooterLinks, Divider, FooterText, GitHubLoginButton, GoogleLoginButton, InputBox, LeftLogo, RightSide, SubmitButton } from '../components/AuthPageComponent'
-import { AuthContext } from "../providers/AuthProvider";
-import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import Swal from "sweetalert2";
+import { AuthFooterLinks, Divider, FooterText, GitHubLoginButton, GoogleLoginButton, InputBox, LeftLogo, RightSide, SubmitButton } from '../components/AuthPageComponent';
+import { AuthContext } from "../providers/AuthProvider";
 
 
 const Registration = () => {
@@ -39,7 +39,7 @@ const Registration = () => {
         lastLoginAt: metadata.lastLoginAt,
         password
       };
-      const result = await axios.post('http://localhost:5000/user', modifiedUser);
+      const result = await axios.post('https://get-it-done-server.vercel.app/user', modifiedUser);
       console.log(result.data);
     } else {
       Swal.fire({

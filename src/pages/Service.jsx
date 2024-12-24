@@ -1,14 +1,13 @@
-import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import Navbar from "../components/Navbar";
-import { FaMapMarkerAlt, FaEnvelope, FaUser, FaClock, FaCheckCircle } from "react-icons/fa";
-import Footer from "../components/Footer";
-import { AuthContext } from "../providers/AuthProvider";
+import { FaCheckCircle, FaClock, FaEnvelope, FaMapMarkerAlt, FaUser } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { InputBox } from "../components/AuthPageComponent";
-import { TextArea } from "../components/AuthPageComponent";
+import { InputBox, TextArea } from "../components/AuthPageComponent";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Service = () => {
   const { id } = useParams();
@@ -26,7 +25,7 @@ const Service = () => {
     const fetchService = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/services/${id}`);
+        const response = await axios.get(`https://get-it-done-server.vercel.app/services/${id}`);
         setService(response.data);
         console.log(response.data);
       } catch (err) {
@@ -40,7 +39,7 @@ const Service = () => {
 
   const handleBookService = async (e) => {
     e.preventDefault();
-    
+
     const bookingData = {
       serviceId: service._id,
       title: service.title,
@@ -56,8 +55,8 @@ const Service = () => {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/bookings', bookingData);
-      if(response.data.insertedId) {
+      const response = await axios.post('https://get-it-done-server.vercel.app/bookings', bookingData);
+      if (response.data.insertedId) {
         Swal.fire({
           icon: 'success',
           title: 'Service Booked Successfully!',
@@ -67,9 +66,9 @@ const Service = () => {
         });
         // Close modal
         const modal = document.getElementById('booking-modal');
-        if(modal) modal.checked = false;
+        if (modal) modal.checked = false;
       }
-    } catch(err) {
+    } catch (err) {
       console.error(err);
       Swal.fire({
         icon: 'error',
@@ -108,13 +107,13 @@ const Service = () => {
               <span className="text-teal-100">Available 24/7</span>
             </div>
           </div>
-          
+
           <div className="bg-white rounded-b-2xl p-8 shadow-xl">
             <div className="flex gap-12">
               <div className="w-2/3">
                 <div className="relative group">
-                  <img 
-                    src={service?.image || defaultServiceImage} 
+                  <img
+                    src={service?.image || defaultServiceImage}
                     alt={service?.title}
                     className="w-full h-[450px] object-cover rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300"
                     onError={(e) => {
@@ -129,7 +128,7 @@ const Service = () => {
                 <div className="mt-8">
                   <h2 className="text-2xl font-bold text-gray-800 mb-4">About This Service</h2>
                   <p className="text-gray-600 leading-relaxed mb-8">{service?.description}</p>
-                  
+
                   <div className="space-y-4">
                     <h3 className="text-xl font-semibold text-gray-800">What's Included:</h3>
                     <div className="grid grid-cols-2 gap-4">
@@ -153,8 +152,8 @@ const Service = () => {
                   <h2 className="text-2xl font-bold text-gray-800 mb-6">Service Provider</h2>
                   <div className="flex items-center gap-4 mb-6">
                     <div className="relative">
-                      <img 
-                        src={service?.providerImage || defaultProviderImage} 
+                      <img
+                        src={service?.providerImage || defaultProviderImage}
                         alt={service?.providerName}
                         className="w-20 h-20 rounded-full object-cover border-4 border-white shadow-md"
                         onError={(e) => {

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { FaRegCalendarCheck, FaRegClock, FaRegStar, FaTools } from "react-icons/fa";
@@ -25,7 +24,7 @@ const DashBoard = () => {
   // useEffect(() => {
   //   const fetchUserStats = async () => {
   //     try {
-  //       const response = await axios.get(`http://localhost:5000/user-stats/${user?.email}`);
+  //       const response = await axios.get(`https://get-it-done-server.vercel.app/user-stats/${user?.email}`);
   //       setUserStats(response.data);
   //     } catch (err) {
   //       console.error("Failed to fetch user stats:", err);

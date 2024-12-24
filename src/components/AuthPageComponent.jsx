@@ -39,7 +39,7 @@ export const GitHubLoginButton = () => {
         createdAt: metadata.createdAt,
         lastLoginAt: metadata.lastLoginAt
       };
-      const result = await axios.post('http://localhost:5000/user', modifiedUser);
+      const result = await axios.post('https://get-it-done-server.vercel.app/user', modifiedUser);
       console.log(result.data);
     } else {
       Swal.fire({
@@ -94,7 +94,7 @@ export const GoogleLoginButton = () => {
         createdAt: metadata.createdAt,
         lastLoginAt: metadata.lastLoginAt
       };
-      const result = await axios.post('http://localhost:5000/user', modifiedUser);
+      const result = await axios.post('https://get-it-done-server.vercel.app/user', modifiedUser);
       console.log(result.data);
     } else {
       Swal.fire({
@@ -138,7 +138,7 @@ export const InputBox = ({ label, type, autoFocus = false, setInputValue, min, m
         min={min}
         max={max}
         placeholder={placeholder}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue || ''}
         value={value}
         disabled={disabled}
         // min={new Date().toISOString().split("T")[0]} // restrict to today's date and future dates

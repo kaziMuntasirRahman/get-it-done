@@ -9,7 +9,7 @@ import { AuthContext } from '../providers/AuthProvider';
 
 const ManageServices = () => {
   const { user } = useContext(AuthContext)
-  const [uiServices, setUIServices] = useState([]); 
+  const [uiServices, setUIServices] = useState([]);
 
   const [updateServiceName, setUpdateServiceName] = useState("");
   const [updateServiceImage, setUpdateServiceImage] = useState("");
@@ -27,7 +27,7 @@ const ManageServices = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/services?email=${user?.email}`);
+        const response = await axios.get(`https://get-it-done-server.vercel.app/services?email=${user?.email}`);
         console.log(response.data)
         setUIServices(Array.isArray(response.data) ? response.data : []);
       } catch (err) {
@@ -57,7 +57,7 @@ const ManageServices = () => {
     }
     console.log(updatedService)
     try {
-      const response = await axios.patch(`http://localhost:5000/services?email=${user?.email}&id=${id}`, updatedService)
+      const response = await axios.patch(`https://get-it-done-server.vercel.app/services?email=${user?.email}&id=${id}`, updatedService)
       console.log(response.data)
       if (response.data.modifiedCount > 0) {
         // Close modal by unchecking the checkbox
@@ -112,7 +112,7 @@ const ManageServices = () => {
     //   if (result.isConfirmed) {
     if (!answer.isConfirmed) return;
     try {
-      const response = await axios.delete(`http://localhost:5000/user/services?email=${user?.email}&id=${id}`)
+      const response = await axios.delete(`https://get-it-done-server.vercel.app/user/services?email=${user?.email}&id=${id}`)
       console.log(response.data)
       if (response.data.deletedCount > 0) {
         Swal.fire({

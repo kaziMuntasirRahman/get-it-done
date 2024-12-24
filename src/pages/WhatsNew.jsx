@@ -1,27 +1,26 @@
-import { Helmet } from "react-helmet-async";
-import { FaCalendar, FaCode, FaBug, FaRocket } from "react-icons/fa";
-import { TopBar } from "../components/DashboardComponent";
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { FaBug, FaCalendar, FaCode, FaRocket } from "react-icons/fa";
 import Swal from "sweetalert2";
-import { useContext } from "react";
+import { TopBar } from "../components/DashboardComponent";
 import { AuthContext } from "../providers/AuthProvider";
 
 const WhatsNew = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [email, setEmail] = useState("");
 
-  useEffect(() => { 
+  useEffect(() => {
     setEmail(user?.email);
   }, [user]);
 
   const handleAddSubscriber = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/subscribers", {email} );
-      if (response.data.insertedId) { 
+      const response = await axios.post("https://get-it-done-server.vercel.app/subscribers", { email });
+      if (response.data.insertedId) {
         console.log("Subscriber added successfully:", response.data);
-        Swal.fire({ 
-          title: "Success", 
+        Swal.fire({
+          title: "Success",
           text: "You are now subscribed to our newsletter",
           icon: "success",
           confirmButtonText: "OK"
@@ -30,21 +29,21 @@ const WhatsNew = () => {
       }
     } catch (error) {
       console.log(error);
-      if(error.response.status === 400){
+      if (error.response.status === 400) {
         Swal.fire({
           title: "Already Subscribed",
           text: "You are already subscribed to our newsletter",
           icon: "warning",
           confirmButtonText: "OK"
         });
-      }else if(error.response.status === 500){
+      } else if (error.response.status === 500) {
         Swal.fire({
           title: "Error",
           text: "An error occurred while adding your email. Please try again.",
           icon: "error",
           confirmButtonText: "OK"
         });
-      } 
+      }
     }
   };
 
@@ -148,8 +147,8 @@ const WhatsNew = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <button
-            className="bg-violet-600 text-white px-6 py-3 rounded-lg hover:bg-violet-700 transition-colors"
-            onClick={handleAddSubscriber}>
+              className="bg-violet-600 text-white px-6 py-3 rounded-lg hover:bg-violet-700 transition-colors"
+              onClick={handleAddSubscriber}>
               Subscribe
             </button>
           </div>

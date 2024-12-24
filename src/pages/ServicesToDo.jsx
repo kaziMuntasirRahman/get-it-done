@@ -1,9 +1,9 @@
-import { Helmet } from "react-helmet-async";
-import { Aside } from "../components/DashboardComponent";
-import { FaClock, FaTimes, FaEye } from "react-icons/fa";
-import { useState, useEffect, useContext } from "react";
-import Swal from "sweetalert2";
 import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { FaClock, FaEye, FaTimes } from "react-icons/fa";
+import Swal from "sweetalert2";
+import { Aside } from "../components/DashboardComponent";
 import { AuthContext } from "../providers/AuthProvider";
 
 const ServicesToDo = () => {
@@ -12,7 +12,7 @@ const ServicesToDo = () => {
 
   useEffect(() => {
     const fetchServicesToDo = async () => {
-      const response = await axios.get(`http://localhost:5000/bookings/provider/${user.email}`);
+      const response = await axios.get(`https://get-it-done-server.vercel.app/bookings/provider/${user.email}`);
       setServicesToDo(response.data);
     };
     fetchServicesToDo();

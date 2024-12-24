@@ -1,9 +1,9 @@
-import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { FaCalendarCheck, FaClock, FaEye, FaTimes } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Aside } from "../components/DashboardComponent";
-import axios from "axios";
 import { AuthContext } from "../providers/AuthProvider";
 
 const BookedService = () => {
@@ -13,7 +13,7 @@ const BookedService = () => {
 
   useEffect(() => {
     const fetchBookedServices = async () => {
-      const response = await axios.get(`http://localhost:5000/bookings/${user.email}`);
+      const response = await axios.get(`https://get-it-done-server.vercel.app/bookings/${user.email}`);
       setBookedServices(response.data);
       console.log(response.data);
     };

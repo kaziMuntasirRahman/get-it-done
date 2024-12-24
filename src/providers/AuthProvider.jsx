@@ -1,7 +1,7 @@
+import axios from "axios";
 import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../firebase/firebase";
-import axios from "axios";
 
 export const AuthContext = createContext(null)
 
@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
         const getUserData = async () => {
           setUserDataLoading(true)
           try {
-            const response = await axios.get(`http://localhost:5000/users/${currentUser?.email}`)
+            const response = await axios.get(`https://get-it-done-server.vercel.app/users/${currentUser?.email}`)
             // console.log(response.data);
             console.log("User data loaded");
             setUserData(response.data);

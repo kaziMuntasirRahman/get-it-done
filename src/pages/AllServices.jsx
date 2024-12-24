@@ -15,7 +15,7 @@ const AllServices = () => {
     const fetchData = async () => {
       setLoading(true)
       try {
-        const response = await axios.get(`http://localhost:5000/services?page=${currentPage}&limit=${limit}`)
+        const response = await axios.get(`https://get-it-done-server.vercel.app/services?page=${currentPage}&limit=${limit}`)
         setServices(response.data.result)
         setTotalPage(response.data.totalPages)
       } catch (err) {
@@ -100,36 +100,36 @@ const AllServices = () => {
       {/* pagination */}
       {
         totalPage > 1 &&
-            <>
-              <div className="join my-10">
-                <button
-                  className={`${currentPage === 1 && 'btn-disabled'} join-item btn`}
-                  onClick={() => setCurrentPage(currentPage - 1)}>
-                  <GrPrevious />
-                </button>
-                {
-                  Array(totalPage).fill().map((_, index) =>
-                    <input
-                      key={index}
-                      className="join-item btn btn-square"
-                      type="radio"
-                      name="options"
-                      aria-label={index + 1}
-                      checked={currentPage === index + 1}
-                      onChange={() => setCurrentPage(index + 1)}
-                    />
-                  )
-                }
-                <button
-                  className={`${currentPage === totalPage && 'btn-disabled'} join-item btn`}
-                  onClick={() => setCurrentPage(currentPage + 1)}>
-                  <GrNext />
-                </button>
-              </div>
-              <div className="text-center mb-8 text-gray-600 bg-gray-100 px-6 py-2 rounded-full">
-                Current Page: <span className="font-semibold text-teal-600">{currentPage}</span>
-              </div>
-            </>
+        <>
+          <div className="join my-10">
+            <button
+              className={`${currentPage === 1 && 'btn-disabled'} join-item btn`}
+              onClick={() => setCurrentPage(currentPage - 1)}>
+              <GrPrevious />
+            </button>
+            {
+              Array(totalPage).fill().map((_, index) =>
+                <input
+                  key={index}
+                  className="join-item btn btn-square"
+                  type="radio"
+                  name="options"
+                  aria-label={index + 1}
+                  checked={currentPage === index + 1}
+                  onChange={() => setCurrentPage(index + 1)}
+                />
+              )
+            }
+            <button
+              className={`${currentPage === totalPage && 'btn-disabled'} join-item btn`}
+              onClick={() => setCurrentPage(currentPage + 1)}>
+              <GrNext />
+            </button>
+          </div>
+          <div className="text-center mb-8 text-gray-600 bg-gray-100 px-6 py-2 rounded-full">
+            Current Page: <span className="font-semibold text-teal-600">{currentPage}</span>
+          </div>
+        </>
       }
     </div>
   );

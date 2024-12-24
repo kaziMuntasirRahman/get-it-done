@@ -36,7 +36,7 @@ const AddService = () => {
 
     try {
       // Send POST request to add service
-      const response = await axios.post('http://localhost:5000/services', service);
+      const response = await axios.post('https://get-it-done-server.vercel.app/services', service);
 
       if (response.data.insertedId) {
         // Show success message

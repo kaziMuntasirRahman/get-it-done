@@ -11,16 +11,16 @@ const UpdateProfile = () => {
   const { displayName, photoURL } = user;
   const navigate = useNavigate();
 
-  const [updatedName, setUpdatedName] = useState()
-  const [updatedPhotoURL, setUpdatedPhotoURL] = useState()
-  const [updatedTitle, setUpdatedTitle] = useState()
-  const [updatedBio, setUpdatedBio] = useState()
-  const [updatedCoverPhotoURL, setUpdatedCoverPhotoURL] = useState()
-  const [updatedAddress, setUpdatedAddress] = useState()
-  const [updatedPhoneNumber, setUpdatedPhoneNumber] = useState()
-  const [updatedFbAccount, setUpdatedFbAccount] = useState()
-  const [updatedLinkedInAddress, setUpdatedLinkedInAddress] = useState()
-  const [updatedTwitterAddress, setUpdatedTwitterAddress] = useState()
+  const [updatedName, setUpdatedName] = useState("")
+  const [updatedPhotoURL, setUpdatedPhotoURL] = useState("")
+  const [updatedTitle, setUpdatedTitle] = useState("")
+  const [updatedBio, setUpdatedBio] = useState("")
+  const [updatedCoverPhotoURL, setUpdatedCoverPhotoURL] = useState("")
+  const [updatedAddress, setUpdatedAddress] = useState("")
+  const [updatedPhoneNumber, setUpdatedPhoneNumber] = useState("")
+  const [updatedFbAccount, setUpdatedFbAccount] = useState("")
+  const [updatedLinkedInAddress, setUpdatedLinkedInAddress] = useState("")
+  const [updatedTwitterAddress, setUpdatedTwitterAddress] = useState("")
 
   useEffect(() => {
     setUpdatedName(user?.displayName)
@@ -34,6 +34,9 @@ const UpdateProfile = () => {
     setUpdatedLinkedInAddress(userData?.linkedInAddress)
     setUpdatedTwitterAddress(userData?.twitterAddress)
   }, [user, userData])
+
+  console.log(userData)
+  console.log(updatedTitle)
 
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
@@ -56,7 +59,7 @@ const UpdateProfile = () => {
         twitterAddress: updatedTwitterAddress
       };
 
-      const result = await axios.patch('http://localhost:5000/users', updatedUser);
+      const result = await axios.patch('https://get-it-done-server.vercel.app/users', updatedUser);
       console.log(result.data);
 
       Swal.fire({
@@ -115,7 +118,7 @@ const UpdateProfile = () => {
                     />
                     <InputBox
                       label="Phone Number"
-                      type="tel"
+                      type="text"
                       setInputValue={setUpdatedPhoneNumber}
                       defaultValue={userDataLoading ? "Update Phone" : updatedPhoneNumber}
                     />
