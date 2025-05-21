@@ -1,8 +1,19 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock } from "react-icons/fa";
-import { InputBox, TextArea, SubmitButton } from '../components/AuthPageComponent';
+import { FaClock, FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
+import { InputBox, SubmitButton, TextArea } from '../components/AuthPageComponent';
 
 const Contact = () => {
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [subject, setSubject] = useState("")
+  const [message, setMessage] = useState("")
+
+  const handleSendMessage = async (e) => {
+    e.preventDefault()
+    console.log(name, email, subject, message)
+  }
+
   return (
     <div className="section-default flex flex-col items-center">
       <Helmet>
@@ -10,10 +21,10 @@ const Contact = () => {
       </Helmet>
 
       <h1 className="section-title">Get in Touch</h1>
-      
+
       {/* Hero Section */}
       <div className="w-full max-w-6xl px-4 mb-12">
-      <div className="bg-gradient-to-r from-teal-500 to-violet-600 rounded-2xl p-8 md:p-12 text-white text-center">
+        <div className="bg-gradient-to-r from-teal-500 to-violet-600 rounded-2xl p-8 md:p-12 text-white text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Need Help? We're Here For You</h2>
           <p className="text-lg md:text-xl opacity-90 max-w-2xl mx-auto">
             Have questions about our services? Want to become a service provider? Our team is ready to help you!
@@ -33,12 +44,15 @@ const Contact = () => {
                     label="Full Name"
                     type="text"
                     placeholder="John Doe"
+                    setInputValue={setName}
+                    autoFocus={true}
                     required
                   />
                   <InputBox
-                    label="Email Address" 
+                    label="Email Address"
                     type="email"
                     placeholder="john@example.com"
+                    setInputValue={setEmail}
                     required
                   />
                 </div>
@@ -46,12 +60,14 @@ const Contact = () => {
                   label="Subject"
                   type="text"
                   placeholder="How can we help?"
+                  setInputValue={setSubject}
                   required
                 />
                 <TextArea
                   label="Message"
                   rows={6}
                   placeholder="Tell us more about your inquiry..."
+                  setInputValue={setMessage}
                   required
                 />
                 <SubmitButton text="Send Message" />
@@ -68,7 +84,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[#1E3A8A]">Our Location</h3>
-                  <p className="text-gray-600 mt-1">123 Business Avenue, Suite 100<br/>New York, NY 10001</p>
+                  <p className="text-gray-600 mt-1">123 Business Avenue, Suite 100<br />New York, NY 10001</p>
                 </div>
               </div>
             </div>
@@ -80,7 +96,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[#1E3A8A]">Email Us</h3>
-                  <p className="text-gray-600 mt-1">contact@getitdone.com<br/>support@getitdone.com</p>
+                  <p className="text-gray-600 mt-1">contact@getitdone.com<br />support@getitdone.com</p>
                 </div>
               </div>
             </div>
@@ -92,7 +108,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[#1E3A8A]">Call Us</h3>
-                  <p className="text-gray-600 mt-1">+1 (555) 123-4567<br/>+1 (555) 987-6543</p>
+                  <p className="text-gray-600 mt-1">+1 (555) 123-4567<br />+1 (555) 987-6543</p>
                 </div>
               </div>
             </div>
@@ -104,7 +120,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-[#1E3A8A]">Working Hours</h3>
-                  <p className="text-gray-600 mt-1">Mon - Fri: 9:00 AM - 6:00 PM<br/>Sat: 10:00 AM - 4:00 PM<br/>Sun: Closed</p>
+                  <p className="text-gray-600 mt-1">Mon - Fri: 9:00 AM - 6:00 PM<br />Sat: 10:00 AM - 4:00 PM<br />Sun: Closed</p>
                 </div>
               </div>
             </div>
